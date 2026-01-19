@@ -1,7 +1,7 @@
 // src/app/services/product.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product, Category } from '../models/product';
+import { Product, Category } from '../models/product'; 
 
 @Injectable({
   providedIn: 'root'
@@ -199,6 +199,8 @@ export class ProductService {
   constructor() {
     this.productsSubject.next(this.products);
   }
+
+  // ===== MÉTHODES PUBLIQUES =====
 
   getProducts(): Observable<Product[]> {
     return this.products$;
