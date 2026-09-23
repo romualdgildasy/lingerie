@@ -1,10 +1,9 @@
-import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home';
 import { ProductDetailComponent } from './components/product-detail/product-detail';
 import { CareGuideComponent } from './components/care-guide/care-guide';
 import { PricingComponent } from './components/pricing/pricing';
 
-export const routes: Routes = [
+export const routes = [
     {
         path: '',
         component: HomeComponent,
