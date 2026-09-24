@@ -9,84 +9,83 @@ import { CartItem } from '../../models/product';
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
-    <div class="min-h-screen bg-[#FAFAFA]">
-      <div class="bg-white border-b border-gray-100">
+    <div class="min-h-screen bg-[#F8F6F2]">
+      
+      
+      <div class="border-b border-[#D7C1A8]/40">
         <div class="max-w-6xl mx-auto px-4 py-10">
-          <h1 class="text-3xl md:text-4xl font-light tracking-tight text-gray-900">
+          <h1 class="text-3xl md:text-4xl text-[#111111] tracking-tight"
+              style="font-family: 'Cormorant Garamond', serif;">
             Votre panier
           </h1>
-          <p class="mt-2 text-gray-500 text-sm">
+          <p class="mt-2 text-sm text-gray-500">
             {{ cartItems.length === 0 ? 'Votre panier est vide' : cartItems.length + ' article' + (cartItems.length > 1 ? 's' : '') }}
           </p>
         </div>
       </div>
 
       <div class="max-w-6xl mx-auto px-4 py-10">
+
         <!-- Panier vide -->
-        <div *ngIf="cartItems.length === 0" class="text-center py-24">
-          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-rose-50 flex items-center justify-center">
-            <svg class="w-10 h-10 text-rose-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div *ngIf="cartItems.length === 0" class="text-center py-20">
+          <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-[#D7C1A8]/20 flex items-center justify-center">
+            <svg class="w-8 h-8 text-[#A78B8B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
             </svg>
           </div>
-          <h2 class="text-xl font-medium text-gray-800 mb-2">Votre panier est vide</h2>
-          <p class="text-gray-500 mb-8 max-w-sm mx-auto">
+          <h2 class="text-xl text-[#111111] mb-2" style="font-family: 'Cormorant Garamond', serif;">
+            Votre panier est vide
+          </h2>
+          <p class="text-gray-500 mb-8 max-w-sm mx-auto text-sm">
             Découvrez notre collection et ajoutez vos pièces préférées.
           </p>
           <a routerLink="/"
-             class="inline-block bg-gray-900 text-white px-8 py-3.5 text-sm font-medium tracking-wide hover:bg-gray-800 transition">
+             class="inline-block bg-[#111111] text-white px-8 py-3.5 text-xs uppercase tracking-widest hover:bg-[#333] transition">
             Continuer mes achats
           </a>
         </div>
 
         <!-- Panier avec articles -->
         <div *ngIf="cartItems.length > 0" class="grid lg:grid-cols-3 gap-10">
-          <div class="lg:col-span-2 space-y-6">
+          
+          <div class="lg:col-span-2 space-y-5">
             <div *ngFor="let item of cartItems"
-                 class="bg-white rounded-2xl p-5 flex gap-5 shadow-sm hover:shadow-md transition">
+                 class="bg-white rounded-2xl p-5 flex gap-5 border border-[#D7C1A8]/20">
               
-              <div class="w-28 h-36 flex-shrink-0 rounded-xl overflow-hidden bg-gray-50">
+              <div class="w-24 h-32 flex-shrink-0 rounded-xl overflow-hidden bg-[#D7C1A8]/15">
                 <img [src]="item.product.image" 
                      [alt]="item.product.name"
                      class="w-full h-full object-cover"
-                     onerror="this.src='https://placehold.co/200x260/fdf2f8/9f1239?text=Sensuelle'">
+                     onerror="this.src='https://placehold.co/200x260/D7C1A8/111111?text=Trulyher'">
               </div>
 
               <div class="flex-1 flex flex-col justify-between min-w-0">
-                <div>
-                  <div class="flex justify-between items-start gap-3">
-                    <div>
-                      <h3 class="font-medium text-gray-900 leading-snug">{{ item.product.name }}</h3>
-                      <p class="text-sm text-gray-500 mt-1">
-                        {{ item.color }} · Taille {{ item.size }}
-                      </p>
-                    </div>
-                    <button (click)="remove(item)"
-                            class="text-gray-400 hover:text-rose-600 transition p-1">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
-                      </svg>
-                    </button>
+                <div class="flex justify-between items-start gap-3">
+                  <div>
+                    <h3 class="font-medium text-[#111111] text-sm leading-snug">{{ item.product.name }}</h3>
+                    <p class="text-xs text-gray-500 mt-1">
+                      {{ item.color }} · Taille {{ item.size }}
+                    </p>
                   </div>
+                  <button (click)="remove(item)" class="text-gray-400 hover:text-[#A78B8B] transition p-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                  </button>
                 </div>
 
                 <div class="flex items-center justify-between mt-4">
-                  <div class="flex items-center border border-gray-200 rounded-full">
+                  <div class="flex items-center border border-[#D7C1A8]/50 rounded-full">
                     <button (click)="decrease(item)"
-                            class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-50 rounded-l-full transition">−</button>
-                    <span class="w-10 text-center text-sm font-medium">{{ item.quantity }}</span>
+                            class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-[#F8F6F2] rounded-l-full transition text-sm">−</button>
+                    <span class="w-8 text-center text-sm font-medium">{{ item.quantity }}</span>
                     <button (click)="increase(item)"
-                            class="w-9 h-9 flex items-center justify-center text-gray-600 hover:bg-gray-50 rounded-r-full transition">+</button>
+                            class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-[#F8F6F2] rounded-r-full transition text-sm">+</button>
                   </div>
 
-                  <div class="text-right">
-                    <p class="font-medium text-gray-900">
-                      {{ (item.product.price * item.quantity) | number:'1.2-2' }} €
-                    </p>
-                    <p *ngIf="item.quantity > 1" class="text-xs text-gray-400">
-                      {{ item.product.price | number:'1.2-2' }} € / pièce
-                    </p>
-                  </div>
+                  <p class="font-medium text-[#111111] text-sm">
+                    {{ (item.product.price * item.quantity) | number:'1.2-2' }} €
+                  </p>
                 </div>
               </div>
             </div>
@@ -94,8 +93,10 @@ import { CartItem } from '../../models/product';
 
           <!-- Récapitulatif -->
           <div class="lg:col-span-1">
-            <div class="bg-white rounded-2xl p-6 shadow-sm sticky top-24">
-              <h2 class="text-lg font-medium text-gray-900 mb-6">Récapitulatif</h2>
+            <div class="bg-white rounded-2xl p-6 border border-[#D7C1A8]/20 sticky top-24">
+              <h2 class="text-lg text-[#111111] mb-6" style="font-family: 'Cormorant Garamond', serif;">
+                Récapitulatif
+              </h2>
 
               <div class="space-y-3 text-sm">
                 <div class="flex justify-between text-gray-600">
@@ -104,23 +105,23 @@ import { CartItem } from '../../models/product';
                 </div>
                 <div class="flex justify-between text-gray-600">
                   <span>Livraison</span>
-                  <span class="text-green-600">Calculée ensuite</span>
+                  <span class="text-[#A78B8B]">Calculée ensuite</span>
                 </div>
               </div>
 
-              <div class="border-t border-gray-100 my-5"></div>
+              <div class="border-t border-[#D7C1A8]/30 my-5"></div>
 
               <div class="flex justify-between items-baseline mb-6">
-                <span class="font-medium text-gray-900">Total</span>
-                <span class="text-2xl font-semibold text-gray-900">{{ total | number:'1.2-2' }} €</span>
+                <span class="font-medium text-[#111111]">Total</span>
+                <span class="text-xl font-medium text-[#111111]">{{ total | number:'1.2-2' }} €</span>
               </div>
 
-              <button class="w-full bg-gray-900 text-white py-4 rounded-xl font-medium text-sm tracking-wide
-                             hover:bg-gray-800 transition">
+              <button class="w-full bg-[#111111] text-white py-4 rounded-full text-xs uppercase tracking-widest
+                             hover:bg-[#333] transition">
                 Passer la commande
               </button>
 
-              <a routerLink="/" class="block text-center mt-4 text-sm text-gray-500 hover:text-gray-800 transition">
+              <a routerLink="/" class="block text-center mt-4 text-xs text-gray-500 hover:text-[#D4AF7C] transition">
                 ← Continuer mes achats
               </a>
             </div>
