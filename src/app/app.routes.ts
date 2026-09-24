@@ -5,6 +5,7 @@ import { PricingComponent } from './components/pricing/pricing';
 import { CartComponent } from './components/cart/cart';
 import { ShopComponent } from './components/shop/shop';
 import { AboutComponent } from './components/about/about';
+import { CheckoutComponent } from './components/checkout/checkout';
 
 export const routes = [
     {
@@ -70,6 +71,11 @@ export const routes = [
     title: 'À propos - TrulyHer',
     description: 'Découvrez l\'histoire et les valeurs de TrulyHer'
   }
+},
+{
+  path: 'checkout',
+  component: CheckoutComponent,
+  data: { title: 'Commande - TrulyHer' }
 },
     {
         path: '**',
