@@ -170,55 +170,8 @@ import { Product } from '../../models/product';
   </div>
 </section>
 
-    <!-- ================= PRODUITS ================= -->
-    <section class="bg-[#F8F6F2] border-t border-[#D7C1A8]/30">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
-        
-        <div class="flex items-end justify-between mb-10">
-          <div>
-            <h2 class="text-2xl md:text-3xl text-[#111111] tracking-tight"
-                style="font-family: 'Cormorant Garamond', serif;">
-              Sélection
-            </h2>
-            <p class="text-sm text-gray-500 mt-1">{{ products.length }} pièces</p>
-          </div>
-          <a routerLink="/products/sans-couture"
-             class="text-xs uppercase tracking-[0.15em] text-[#A78B8B] hover:text-[#111111] transition hidden sm:block">
-            Voir tout →
-          </a>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-8">
-          <a *ngFor="let product of products"
-             [routerLink]="['/product', product.id]"
-             class="group">
-            <div class="relative aspect-[3/4] overflow-hidden bg-[#D7C1A8]/15 mb-4">
-              <img [src]="product.image"
-                   [alt]="product.name"
-                   class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                   onerror="this.src='https://placehold.co/400x530/D7C1A8/111111?text=TrulyHer'">
-              
-              <div *ngIf="!product.available"
-                   class="absolute inset-0 bg-white/60 flex items-center justify-center">
-                <span class="text-[10px] uppercase tracking-widest text-[#111111] bg-white px-3 py-1.5">
-                  Bientôt
-                </span>
-              </div>
-            </div>
-
-            <div>
-              <h3 class="text-sm text-[#111111] group-hover:text-[#A78B8B] transition line-clamp-1">
-                {{ product.name }}
-              </h3>
-              <p class="text-sm text-gray-500 mt-1">
-                {{ product.price | number:'1.2-2' }} €
-              </p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
+    
+    
     <!-- ================= PHRASE ================= -->
     <section class="bg-[#111111] text-center py-16 md:py-20">
       <p class="text-xl md:text-2xl text-white max-w-2xl mx-auto px-4 leading-relaxed"
