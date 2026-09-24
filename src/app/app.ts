@@ -4,15 +4,17 @@ import { HeaderComponent } from "./components/header/header";
 import { FooterComponent } from "./components/footer/footer";
 import { Meta, Title } from '@angular/platform-browser';
 import { filter } from 'rxjs';
+import { WhatsappButtonComponent } from './services/whatsapp-button/whatsapp-button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent,WhatsappButtonComponent],
   template: `
 
   <app-header></app-header>
-   <router-outlet></router-outlet>
-    <app-footer></app-footer>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  <app-whatsapp-button></app-whatsapp-button>
   `,
   styles: [`
     :host {
