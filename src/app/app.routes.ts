@@ -2,6 +2,7 @@ import { HomeComponent } from './components/home/home';
 import { ProductDetailComponent } from './components/product-detail/product-detail';
 import { CareGuideComponent } from './components/care-guide/care-guide';
 import { PricingComponent } from './components/pricing/pricing';
+import { CartComponent } from './components/cart/cart';
 
 export const routes = [
     {
@@ -44,6 +45,14 @@ export const routes = [
             description: 'Consultez nos prix transparents et nos promotions'
         }
     },
+    {
+  path: 'panier',
+  component: CartComponent,
+  data: {
+    title: 'Panier - Sensuelle',
+    description: 'Votre panier de lingerie premium'
+  }
+},
     {
         path: '**',
         redirectTo: ''
