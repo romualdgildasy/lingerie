@@ -20,13 +20,15 @@
 
 html {
   scroll-behavior: smooth;
+  background-color: #F8F6F2 !important;
 }
 
 body {
   font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
-  background: #F8F6F2;
+  background-color: #F8F6F2 !important;
   color: #111111;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -41,4 +43,15 @@ img {
 ::selection {
   background: #D7C1A8;
   color: #111111;
+}
+
+/* Force le fond crème sur les conteneurs principaux */
+app-root,
+app-home,
+app-product-detail,
+app-cart,
+app-care-guide {
+  background-color: #F8F6F2 !important;
+  display: block;
+  min-height: 100%;
 }
