@@ -4,6 +4,7 @@ import { CareGuideComponent } from './components/care-guide/care-guide';
 import { PricingComponent } from './components/pricing/pricing';
 import { CartComponent } from './components/cart/cart';
 import { ShopComponent } from './components/shop/shop';
+import { AboutComponent } from './components/about/about';
 
 export const routes = [
     {
@@ -60,6 +61,14 @@ export const routes = [
   data: {
     title: 'Boutique - TrulyHer',
     description: 'Découvrez toute la collection TrulyHer'
+  }
+},
+{
+  path: 'about',
+  component: AboutComponent,
+  data: {
+    title: 'À propos - TrulyHer',
+    description: 'Découvrez l\'histoire et les valeurs de TrulyHer'
   }
 },
     {

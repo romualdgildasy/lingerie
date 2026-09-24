@@ -10,44 +10,49 @@ import { CartService } from '../../services/cart';
   template: `
     <header class="sticky top-0 z-50 bg-[#F8F6F2]/95 backdrop-blur-md border-b border-[#D7C1A8]/30">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex items-center justify-between h-16 md:h-18">
+        <div class="flex items-center justify-between h-16 md:h-[72px]">
 
           <!-- Logo -->
-          <a routerLink="/" class="flex flex-col items-start">
-            <span class="text-2xl md:text-3xl font-medium tracking-wide text-[#111111]"
+          <a routerLink="/" class="flex-shrink-0">
+            <span class="text-2xl md:text-3xl tracking-wide text-[#111111]"
                   style="font-family: 'Cormorant Garamond', serif;">
-              Trulyher
+              TrulyHer
             </span>
           </a>
 
-          <!-- Navigation desktop -->
-          <nav class="hidden md:flex items-center gap-8">
-            <a routerLink="/"
+          <!-- Navigation Desktop -->
+          <nav class="hidden lg:flex items-center gap-7">
+            <a routerLink="/shop"
                routerLinkActive="text-[#D4AF7C]"
                [routerLinkActiveOptions]="{exact: true}"
-               class="text-xs uppercase tracking-[0.15em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
-              Accueil
+               class="text-xs uppercase tracking-[0.18em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
+              Shop
             </a>
-            <a routerLink="/products/sans-couture"
-               routerLinkActive="text-[#D4AF7C]"
-               class="text-xs uppercase tracking-[0.15em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
-              Sans Couture
+            <a [routerLink]="['/shop']" [queryParams]="{category: 'underwear'}"
+               class="text-xs uppercase tracking-[0.18em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
+              Underwear
             </a>
-            <a routerLink="/products/dentelle"
-               routerLinkActive="text-[#D4AF7C]"
-               class="text-xs uppercase tracking-[0.15em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
-              Dentelle
+            <a [routerLink]="['/shop']" [queryParams]="{category: 'lingerie'}"
+               class="text-xs uppercase tracking-[0.18em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
+              Lingerie
             </a>
-            <a routerLink="/care-guide"
+            <a [routerLink]="['/shop']" [queryParams]="{category: 'shapewear'}"
+               class="text-xs uppercase tracking-[0.18em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
+              Shapewear
+            </a>
+            <a [routerLink]="['/shop']" [queryParams]="{category: 'bras'}"
+               class="text-xs uppercase tracking-[0.18em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
+              Bras
+            </a>
+            <a routerLink="/about"
                routerLinkActive="text-[#D4AF7C]"
-               class="text-xs uppercase tracking-[0.15em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
-              Entretien
+               class="text-xs uppercase tracking-[0.18em] text-[#111111] hover:text-[#D4AF7C] transition font-medium">
+              About
             </a>
           </nav>
 
           <!-- Actions -->
           <div class="flex items-center gap-3">
-            <!-- Panier -->
             <a routerLink="/panier"
                class="relative p-2 text-[#111111] hover:text-[#D4AF7C] transition">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,14 +61,12 @@ import { CartService } from '../../services/cart';
               </svg>
               <span *ngIf="cartCount > 0"
                     class="absolute -top-0.5 -right-0.5 bg-[#111111] text-white text-[10px] font-medium
-                           w-4.5 h-4.5 rounded-full flex items-center justify-center min-w-[18px] h-[18px]">
+                           min-w-[18px] h-[18px] rounded-full flex items-center justify-center px-1">
                 {{ cartCount > 9 ? '9+' : cartCount }}
               </span>
             </a>
 
-            <!-- Menu mobile -->
-            <button (click)="menuOpen = !menuOpen"
-                    class="md:hidden p-2 text-[#111111]">
+            <button (click)="menuOpen = !menuOpen" class="lg:hidden p-2 text-[#111111]">
               <svg *ngIf="!menuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
@@ -75,19 +78,16 @@ import { CartService } from '../../services/cart';
         </div>
       </div>
 
-      <!-- Menu mobile -->
-      <div *ngIf="menuOpen" class="md:hidden border-t border-[#D7C1A8]/30 bg-[#F8F6F2]">
+      <!-- Menu Mobile -->
+      <div *ngIf="menuOpen" class="lg:hidden border-t border-[#D7C1A8]/30 bg-[#F8F6F2]">
         <nav class="px-4 py-5 space-y-1">
-          <a routerLink="/" (click)="menuOpen = false"
-             class="block py-3 text-sm tracking-wide text-[#111111]">Accueil</a>
-          <a routerLink="/products/sans-couture" (click)="menuOpen = false"
-             class="block py-3 text-sm tracking-wide text-[#111111]">Sans Couture</a>
-          <a routerLink="/products/dentelle" (click)="menuOpen = false"
-             class="block py-3 text-sm tracking-wide text-[#111111]">Dentelle</a>
-          <a routerLink="/care-guide" (click)="menuOpen = false"
-             class="block py-3 text-sm tracking-wide text-[#111111]">Entretien</a>
-          <a routerLink="/panier" (click)="menuOpen = false"
-             class="block py-3 text-sm tracking-wide text-[#111111]">Panier ({{ cartCount }})</a>
+          <a routerLink="/shop" (click)="menuOpen = false" class="block py-3 text-sm tracking-wide text-[#111111]">Shop</a>
+          <a [routerLink]="['/shop']" [queryParams]="{category: 'underwear'}" (click)="menuOpen = false" class="block py-3 text-sm tracking-wide text-[#111111]">Underwear</a>
+          <a [routerLink]="['/shop']" [queryParams]="{category: 'lingerie'}" (click)="menuOpen = false" class="block py-3 text-sm tracking-wide text-[#111111]">Lingerie</a>
+          <a [routerLink]="['/shop']" [queryParams]="{category: 'shapewear'}" (click)="menuOpen = false" class="block py-3 text-sm tracking-wide text-[#111111]">Shapewear</a>
+          <a [routerLink]="['/shop']" [queryParams]="{category: 'bras'}" (click)="menuOpen = false" class="block py-3 text-sm tracking-wide text-[#111111]">Bras</a>
+          <a routerLink="/about" (click)="menuOpen = false" class="block py-3 text-sm tracking-wide text-[#111111]">About</a>
+          <a routerLink="/panier" (click)="menuOpen = false" class="block py-3 text-sm tracking-wide text-[#111111]">Panier ({{ cartCount }})</a>
         </nav>
       </div>
     </header>
