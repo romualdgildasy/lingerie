@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/product';
+import { ReviewsComponent } from '../reviews/reviews';
+
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, ReviewsComponent],
   template: `
 
     <!-- ================= HERO ================= -->
@@ -182,6 +185,33 @@ import { Product } from '../../models/product';
         TrulyHer
       </p>
     </section>
+    <app-reviews [enabled]="false"></app-reviews>
+    <!-- INSTAGRAM -->
+<section class="bg-white border-t border-[#D7C1A8]/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20 text-center">
+    
+    <p class="text-xs uppercase tracking-[0.3em] text-[#A78B8B] mb-3">
+      @trulyher
+    </p>
+    <h2 class="text-2xl md:text-3xl text-[#111111] tracking-tight mb-3"
+        style="font-family: 'Cormorant Garamond', serif;">
+      Suivez-nous
+    </h2>
+    <p class="text-sm text-gray-500 mb-10 max-w-md mx-auto">
+      Découvrez l’univers TrulyHer sur Instagram.
+    </p>
+
+    <!-- Grille visuelle (placeholders pour l’instant) -->
+    
+
+    <a href="https://instagram.com/trulyher"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="inline-block border border-[#111111] text-[#111111] px-8 py-3.5 text-xs uppercase tracking-[0.2em] hover:bg-[#111111] hover:text-white transition">
+      Voir sur Instagram
+    </a>
+  </div>
+</section>
   `,
   styles: [`:host { display: block; }`]
 })
