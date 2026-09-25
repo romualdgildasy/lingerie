@@ -1,12 +1,23 @@
-// src/app/models/product.model.ts
+// src/app/models/product.ts
 
 /**
- * Interface pour un produit
+ * Catégories TrulyHer
+ */
+export type ProductCategory =
+  | 'underwear'
+  | 'lingerie'
+  | 'shapewear'
+  | 'bras'
+  | 'activewear'
+  | 'men';
+
+/**
+ * Interface Produit
  */
 export interface Product {
   id: string;
   name: string;
-  category: 'sans-couture' | 'dentelle' | 'soutien' | 'gaine' | 'autres';
+  category: ProductCategory;
   description: string;
   price: number;
   sizes: string[];
@@ -21,28 +32,17 @@ export interface Product {
 }
 
 /**
- * Interface pour une catégorie
+ * Interface Catégorie
  */
 export interface Category {
-  id: string;
+  id: ProductCategory | string;
   name: string;
-  icon: string;
+  icon?: string;
   description: string;
 }
 
 /**
- * Interface pour la grille tarifaire
- */
-export interface PriceGrid {
-  category: string;
-  items: {
-    size: string;
-    price: number;
-  }[];
-}
-
-/**
- * Interface pour un avis client
+ * Interface Avis client
  */
 export interface Review {
   id: string;
@@ -54,7 +54,7 @@ export interface Review {
 }
 
 /**
- * Interface pour le panier
+ * Interface Article du panier
  */
 export interface CartItem {
   product: Product;
@@ -64,20 +64,24 @@ export interface CartItem {
 }
 
 /**
- * Interface pour une commande
+ * Interface Commande
  */
 export interface Order {
   id: string;
   items: CartItem[];
+  subtotal: number;
+  shipping: number;
   totalPrice: number;
   date: Date;
-  status: 'pending' | 'processing' | 'shipped' | 'delivered';
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  paymentMethod: 'cod' | 'momo' | 'other';
   customerInfo: {
-    name: string;
-    email: string;
+    firstName: string;
+    lastName: string;
+    email?: string;
     phone: string;
     address: string;
     city: string;
-    zipCode: string;
+    quartier?: string;
   };
 }

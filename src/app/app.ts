@@ -1,20 +1,20 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { HeaderComponent } from "./components/header/header";
-import { FooterComponent } from "./components/footer/footer";
+import { HeaderComponent } from './components/header/header';
+import { FooterComponent } from './components/footer/footer';
+
 import { Meta, Title } from '@angular/platform-browser';
 import { filter } from 'rxjs';
 import { WhatsappButtonComponent } from './services/whatsapp-button/whatsapp-button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent,WhatsappButtonComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, WhatsappButtonComponent],
   template: `
-
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-  <app-whatsapp-button></app-whatsapp-button>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+    <app-whatsapp-button></app-whatsapp-button>
   `,
   styles: [`
     :host {
@@ -23,14 +23,9 @@ import { WhatsappButtonComponent } from './services/whatsapp-button/whatsapp-but
       display: flex;
       flex-direction: column;
     }
-
-    main {
-      flex: 1;
-    }
   `]
 })
 export class AppComponent implements OnInit {
-  title = 'Sensuelle - Lingerie Fine & Sensualité';
 
   constructor(
     private router: Router,
@@ -39,55 +34,52 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Meta tags par défaut
+    // Meta tags par défaut - TrulyHer
     this.meta.addTags([
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'theme-color', content: '#ec4899' },
-      { 
-        name: 'description', 
-        content: 'Sensuelle - Lingerie fine premium alliant sensualité, confort et élégance. Découvrez notre sélection de sous-vêtements sans couture, dentelle, soutiens et gaines.'
+      { name: 'theme-color', content: '#111111' },
+      {
+        name: 'description',
+        content: 'TrulyHer - Let us adorn your intimacy. Lingerie, underwear, shapewear et pièces premium.'
       },
-      { 
-        name: 'keywords', 
-        content: 'lingerie, sous-vêtements, dentelle, soutien-gorge, gaine, sans couture, sensualité, confort, premium'
+      {
+        name: 'keywords',
+        content: 'TrulyHer, lingerie, underwear, shapewear, bras, intimates, Cameroun'
       },
-      { name: 'author', content: 'Sensuelle' },
+      { name: 'author', content: 'TrulyHer' },
       { name: 'robots', content: 'index, follow' }
     ]);
 
     // Open Graph
     this.meta.addTags([
       { property: 'og:type', content: 'website' },
-      { property: 'og:site_name', content: 'Sensuelle' },
-      { property: 'og:title', content: 'Sensuelle - Lingerie Fine' },
-      { 
-        property: 'og:description', 
-        content: 'Découvrez notre collection exclusive de lingerie premium'
+      { property: 'og:site_name', content: 'TrulyHer' },
+      { property: 'og:title', content: 'TrulyHer - Let us adorn your intimacy' },
+      {
+        property: 'og:description',
+        content: 'Lingerie et underwear premium. Confort, élégance et confiance.'
       },
-      { property: 'og:image', content: 'https://sensuelle.com/assets/og-image.jpg' },
-      { property: 'og:url', content: 'https://sensuelle.com' }
+      { property: 'og:url', content: 'https://trulyher.com' }
     ]);
 
     // Twitter Card
     this.meta.addTags([
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Sensuelle - Lingerie Fine' },
-      { 
-        name: 'twitter:description', 
-        content: 'Découvrez notre collection exclusive de lingerie premium'
+      { name: 'twitter:title', content: 'TrulyHer' },
+      {
+        name: 'twitter:description',
+        content: 'Let us adorn your intimacy'
       }
     ]);
 
-    // Update title on route change
+    // Mise à jour du titre à chaque changement de page
     this.router.events
-      .pipe(
-        filter((event: any) => event instanceof NavigationEnd)
-      )
+      .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe(() => {
         window.scrollTo(0, 0);
         const route = this.router.routerState.root.firstChild;
-        if (route?.data) {
-          const routeData = route.data as { title?: string; description?: string };
+        if (route?.snapshot?.data) {
+          const routeData = route.snapshot.data as { title?: string; description?: string };
           if (routeData['title']) {
             this.titleService.setTitle(routeData['title']);
           }
@@ -97,12 +89,11 @@ export class AppComponent implements OnInit {
         }
       });
 
-    // Enregistrer service worker (PWA)
+    // Service Worker (PWA)
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/ngsw-worker.js').catch(err => 
+      navigator.serviceWorker.register('/ngsw-worker.js').catch(err =>
         console.log('Service Worker registration failed: ', err)
       );
     }
   }
 }
-
