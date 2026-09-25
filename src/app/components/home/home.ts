@@ -9,7 +9,7 @@ import { Product } from '../../models/product';
   standalone: true,
   imports: [CommonModule, RouterLink],
   template: `
-    <!-- ================= HERO ================= -->
+
     <!-- ================= HERO ================= -->
 <section class="relative bg-[#F8F6F2] overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">

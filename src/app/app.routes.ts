@@ -6,6 +6,7 @@ import { CartComponent } from './components/cart/cart';
 import { ShopComponent } from './components/shop/shop';
 import { AboutComponent } from './components/about/about';
 import { CheckoutComponent } from './components/checkout/checkout';
+import { SizeGuideComponent } from './components/size-guide/size-guide';
 
 export const routes = [
     {
@@ -76,6 +77,14 @@ export const routes = [
   path: 'checkout',
   component: CheckoutComponent,
   data: { title: 'Commande - TrulyHer' }
+},
+{
+  path: 'size-guide',
+  component: SizeGuideComponent,
+  data: {
+    title: 'Guide des tailles - TrulyHer',
+    description: 'Trouvez votre taille idéale avec le guide TrulyHer'
+  }
 },
     {
         path: '**',
