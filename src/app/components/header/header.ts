@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart';
 
@@ -143,7 +143,9 @@ export class HeaderComponent implements OnInit {
   searchQuery = '';
   cartCount = 0;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.cartService.cart$.subscribe(() => {
@@ -152,10 +154,12 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearch(event: Event) {
-    event.preventDefault();
-    if (!this.searchQuery.trim()) return;
-    // Plus tard → page résultats / filtre shop
-    window.location.href = `/shop?q=${encodeURIComponent(this.searchQuery.trim())}`;
-    this.searchOpen = false;
-  }
+  event.preventDefault();
+  const q = this.searchQuery.trim();
+  if (!q) return;
+
+  this.searchOpen = false;
+  this.menuOpen = false;
+  this.router.navigate(['/shop'], { queryParams: { q } });
+}
 }

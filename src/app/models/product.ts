@@ -1,8 +1,3 @@
-// src/app/models/product.ts
-
-/**
- * Catégories TrulyHer
- */
 export type ProductCategory =
   | 'underwear'
   | 'lingerie'
@@ -12,28 +7,42 @@ export type ProductCategory =
   | 'men';
 
 /**
- * Interface Produit
+ * Variante = taille + couleur + stock
+ */
+export interface ProductVariant {
+  sku: string;          // ex: TH-STR-001-M-BLK
+  size: string;         // M
+  color: string;        // Noir
+  stock: number;        // quantité disponible
+  available: boolean;   // stock > 0
+}
+
+/**
+ * Produit (modèle)
  */
 export interface Product {
   id: string;
+  reference: string;    // ex: TH-STR-001
   name: string;
   category: ProductCategory;
   description: string;
   price: number;
-  sizes: string[];
-  colors: string[];
   image: string;
   gallery: string[];
-  available: boolean;
-  rating?: number;
-  reviews?: number;
   material: string;
   careInstructions: string[];
+  rating?: number;
+  reviews?: number;
+
+  /** Variantes (taille + couleur + stock) */
+  variants: ProductVariant[];
+
+  /** Helpers (optionnels, pour compatibilité) */
+  sizes?: string[];
+  colors?: string[];
+  available?: boolean;
 }
 
-/**
- * Interface Catégorie
- */
 export interface Category {
   id: ProductCategory | string;
   name: string;
@@ -41,31 +50,14 @@ export interface Category {
   description: string;
 }
 
-/**
- * Interface Avis client
- */
-export interface Review {
-  id: string;
-  productId: string;
-  rating: number;
-  comment: string;
-  author: string;
-  date: Date;
-}
-
-/**
- * Interface Article du panier
- */
 export interface CartItem {
   product: Product;
   quantity: number;
   size: string;
   color: string;
+  sku?: string;
 }
 
-/**
- * Interface Commande
- */
 export interface Order {
   id: string;
   items: CartItem[];

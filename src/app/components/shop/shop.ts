@@ -28,7 +28,7 @@ import { Product } from '../../models/product';
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         <div class="flex flex-col lg:flex-row gap-10">
 
-          <!-- ========== FILTRES ========== -->
+          <!-- FILTRES -->
           <aside class="lg:w-56 flex-shrink-0">
             <div class="sticky top-24 space-y-8">
 
@@ -91,16 +91,14 @@ import { Product } from '../../models/product';
               <!-- Prix -->
               <div>
                 <h3 class="text-xs uppercase tracking-[0.2em] text-[#111111] mb-4">Prix</h3>
-                <div class="space-y-3">
-                  <div class="flex items-center gap-2 text-sm">
-                    <input type="number" [(ngModel)]="minPrice" (change)="applyFilters()"
-                           placeholder="Min"
-                           class="w-full border border-[#D7C1A8]/50 rounded-lg px-3 py-2 text-sm focus:outline-none">
-                    <span class="text-gray-400">–</span>
-                    <input type="number" [(ngModel)]="maxPrice" (change)="applyFilters()"
-                           placeholder="Max"
-                           class="w-full border border-[#D7C1A8]/50 rounded-lg px-3 py-2 text-sm focus:outline-none">
-                  </div>
+                <div class="flex items-center gap-2 text-sm">
+                  <input type="number" [(ngModel)]="minPrice" (change)="applyFilters()"
+                         placeholder="Min"
+                         class="w-full border border-[#D7C1A8]/50 rounded-lg px-3 py-2 text-sm focus:outline-none">
+                  <span class="text-gray-400">–</span>
+                  <input type="number" [(ngModel)]="maxPrice" (change)="applyFilters()"
+                         placeholder="Max"
+                         class="w-full border border-[#D7C1A8]/50 rounded-lg px-3 py-2 text-sm focus:outline-none">
                 </div>
               </div>
 
@@ -126,7 +124,6 @@ import { Product } from '../../models/product';
                 </select>
               </div>
 
-              <!-- Reset -->
               <button (click)="resetFilters()"
                       class="text-xs text-[#A78B8B] hover:text-[#111111] transition underline">
                 Réinitialiser les filtres
@@ -135,7 +132,7 @@ import { Product } from '../../models/product';
             </div>
           </aside>
 
-          <!-- ========== PRODUITS ========== -->
+          <!-- PRODUITS -->
           <div class="flex-1">
             <div class="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-8">
               <a *ngFor="let product of filteredProducts"
@@ -146,7 +143,7 @@ import { Product } from '../../models/product';
                        [alt]="product.name"
                        class="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                        onerror="this.src='https://placehold.co/400x530/D7C1A8/111111?text=TrulyHer'">
-                  
+
                   <div *ngIf="!product.available"
                        class="absolute inset-0 bg-white/60 flex items-center justify-center">
                     <span class="text-[10px] uppercase tracking-widest text-[#111111] bg-white px-3 py-1.5">
@@ -167,7 +164,8 @@ import { Product } from '../../models/product';
 
             <div *ngIf="filteredProducts.length === 0" class="text-center py-20">
               <p class="text-gray-500 text-sm">Aucun produit ne correspond à vos critères.</p>
-              <button (click)="resetFilters()" class="mt-4 text-sm text-[#A78B8B] hover:text-[#111111] transition">
+              <button (click)="resetFilters()"
+                      class="mt-4 text-sm text-[#A78B8B] hover:text-[#111111] transition">
                 Réinitialiser les filtres
               </button>
             </div>
@@ -184,16 +182,16 @@ export class ShopComponent implements OnInit {
   filteredProducts: Product[] = [];
 
   displayCategories = [
-    { id: 'underwear', name: 'Underwear', oldIds: ['sans-couture'] },
-    { id: 'lingerie', name: 'Lingerie', oldIds: ['dentelle'] },
-    { id: 'shapewear', name: 'Shapewear', oldIds: ['gaine'] },
-    { id: 'bras', name: 'Bras', oldIds: ['soutien'] },
-    { id: 'activewear', name: 'Activewear', oldIds: ['autres'] },
-    { id: 'men', name: 'Men', oldIds: ['autres'] }
+    { id: 'underwear', name: 'Underwear' },
+    { id: 'lingerie', name: 'Lingerie' },
+    { id: 'shapewear', name: 'Shapewear' },
+    { id: 'bras', name: 'Bras' },
+    { id: 'activewear', name: 'Activewear' },
+    { id: 'men', name: 'Men' }
   ];
 
-  availableSizes = ['XS', 'S', 'M', 'L', 'XL'];
-  availableColors = ['Noir', 'Blanc', 'Beige', 'Rose', 'Champagne'];
+  availableSizes = ['XS', 'S', 'M', 'L', 'XL', '80A', '80B', '85B', '90C', '95C', '95D'];
+  availableColors = ['Noir', 'Blanc', 'Beige', 'Rose', 'Champagne', 'Rose Ancien'];
 
   selectedCategory: string | null = null;
   selectedSizes: string[] = [];
@@ -203,6 +201,7 @@ export class ShopComponent implements OnInit {
   maxPrice: number | null = null;
   sortBy = 'newest';
   pageTitle = 'Boutique';
+  searchQuery = '';
 
   constructor(
     private productService: ProductService,
@@ -217,6 +216,7 @@ export class ShopComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.selectedCategory = params['category'] || null;
+      this.searchQuery = params['q'] || '';
       this.updateTitle();
       this.applyFilters();
     });
@@ -249,6 +249,10 @@ export class ShopComponent implements OnInit {
   }
 
   private updateTitle() {
+    if (this.searchQuery) {
+      this.pageTitle = `Résultats pour « ${this.searchQuery} »`;
+      return;
+    }
     if (!this.selectedCategory) {
       this.pageTitle = 'Boutique';
       return;
@@ -260,22 +264,34 @@ export class ShopComponent implements OnInit {
   applyFilters() {
     let result = [...this.products];
 
+    // Recherche (nom, id, référence, catégorie)
+    if (this.searchQuery) {
+      const q = this.searchQuery.toLowerCase();
+      result = result.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        p.id.toLowerCase().includes(q) ||
+        (p.reference || '').toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q)
+      );
+    }
+
     // Catégorie
     if (this.selectedCategory) {
-      const cat = this.displayCategories.find(c => c.id === this.selectedCategory);
-      if (cat) {
-        result = result.filter(p => cat.oldIds.includes(p.category));
-      }
+      result = result.filter(p => p.category === this.selectedCategory);
     }
 
     // Taille
     if (this.selectedSizes.length > 0) {
-      result = result.filter(p => p.sizes.some(s => this.selectedSizes.includes(s)));
+      result = result.filter(p =>
+        (p.sizes || []).some(s => this.selectedSizes.includes(s))
+      );
     }
 
     // Couleur
     if (this.selectedColors.length > 0) {
-      result = result.filter(p => p.colors.some(c => this.selectedColors.includes(c)));
+      result = result.filter(p =>
+        (p.colors || []).some(c => this.selectedColors.includes(c))
+      );
     }
 
     // Prix
@@ -311,6 +327,7 @@ export class ShopComponent implements OnInit {
     this.minPrice = null;
     this.maxPrice = null;
     this.sortBy = 'newest';
+    this.searchQuery = '';
     this.pageTitle = 'Boutique';
     this.applyFilters();
   }
@@ -321,7 +338,8 @@ export class ShopComponent implements OnInit {
       'Blanc': '#F8F6F2',
       'Beige': '#D7C1A8',
       'Rose': '#A78B8B',
-      'Champagne': '#D4AF7C'
+      'Champagne': '#D4AF7C',
+      'Rose Ancien': '#A78B8B'
     };
     return map[color] || '#D7C1A8';
   }

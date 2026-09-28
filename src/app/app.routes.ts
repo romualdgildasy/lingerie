@@ -7,6 +7,7 @@ import { ShopComponent } from './components/shop/shop';
 import { AboutComponent } from './components/about/about';
 import { CheckoutComponent } from './components/checkout/checkout';
 import { SizeGuideComponent } from './components/size-guide/size-guide';
+import { DeliveryComponent } from './components/delivery/delivery';
 
 export const routes = [
     {
@@ -86,6 +87,10 @@ export const routes = [
     description: 'Trouvez votre taille idéale avec le guide TrulyHer'
   }
 },
+{ path: 'delivery', component: DeliveryComponent, data: {
+  title: 'Livraison — TrulyHer',
+  description: 'Zones, délais et frais de livraison au Cameroun.'
+}},
     {
         path: '**',
         redirectTo: ''

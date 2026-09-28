@@ -1,7 +1,7 @@
 // src/app/services/product.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product, Category } from '../models/product';
+import { Product, Category, ProductVariant } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,11 @@ export class ProductService {
   public products$ = this.productsSubject.asObservable();
 
   private products: Product[] = [
-    // UNDERWEAR
+
+    // ================= UNDERWEAR =================
     {
       id: '1',
+      reference: 'TH-STR-001',
       name: 'Bare Muse',
       category: 'underwear',
       description: 'String seamless pensé pour un rendu discret sous les vêtements, avec confort et liberté de mouvement.',
@@ -34,10 +36,22 @@ export class ProductService {
         'Lavage à 30°C maximum',
         'Pas de sèche-linge',
         'Séchage à l\'air libre'
+      ],
+      variants: [
+        { sku: 'TH-STR-001-XS-BLK', size: 'XS', color: 'Noir', stock: 6, available: true },
+        { sku: 'TH-STR-001-S-BLK', size: 'S', color: 'Noir', stock: 12, available: true },
+        { sku: 'TH-STR-001-M-BLK', size: 'M', color: 'Noir', stock: 8, available: true },
+        { sku: 'TH-STR-001-L-BLK', size: 'L', color: 'Noir', stock: 4, available: true },
+        { sku: 'TH-STR-001-XL-BLK', size: 'XL', color: 'Noir', stock: 2, available: true },
+        { sku: 'TH-STR-001-S-BEG', size: 'S', color: 'Beige', stock: 5, available: true },
+        { sku: 'TH-STR-001-M-BEG', size: 'M', color: 'Beige', stock: 3, available: true },
+        { sku: 'TH-STR-001-S-WHT', size: 'S', color: 'Blanc', stock: 7, available: true },
+        { sku: 'TH-STR-001-M-WHT', size: 'M', color: 'Blanc', stock: 0, available: false }
       ]
     },
     {
       id: '2',
+      reference: 'TH-CLP-002',
       name: 'Soft Day',
       category: 'underwear',
       description: 'Culotte everyday douce et respirante pour le confort au quotidien.',
@@ -53,12 +67,20 @@ export class ProductService {
       careInstructions: [
         'Lavage à 30°C',
         'Séchage à l\'air libre'
+      ],
+      variants: [
+        { sku: 'TH-CLP-002-S-BLK', size: 'S', color: 'Noir', stock: 10, available: true },
+        { sku: 'TH-CLP-002-M-BLK', size: 'M', color: 'Noir', stock: 9, available: true },
+        { sku: 'TH-CLP-002-L-BLK', size: 'L', color: 'Noir', stock: 6, available: true },
+        { sku: 'TH-CLP-002-S-BEG', size: 'S', color: 'Beige', stock: 4, available: true },
+        { sku: 'TH-CLP-002-M-ROS', size: 'M', color: 'Rose', stock: 5, available: true }
       ]
     },
 
-    // LINGERIE
+    // ================= LINGERIE =================
     {
       id: '3',
+      reference: 'TH-LNG-003',
       name: 'Noir Dentelle',
       category: 'lingerie',
       description: 'Pièce en dentelle raffinée pour une allure élégante et sensuelle.',
@@ -76,10 +98,18 @@ export class ProductService {
         'Laver à l\'envers',
         'Pas de sèche-linge',
         'Sécher à plat'
+      ],
+      variants: [
+        { sku: 'TH-LNG-003-S-BLK', size: 'S', color: 'Noir', stock: 8, available: true },
+        { sku: 'TH-LNG-003-M-BLK', size: 'M', color: 'Noir', stock: 11, available: true },
+        { sku: 'TH-LNG-003-L-BLK', size: 'L', color: 'Noir', stock: 3, available: true },
+        { sku: 'TH-LNG-003-S-CHP', size: 'S', color: 'Champagne', stock: 4, available: true },
+        { sku: 'TH-LNG-003-M-CHP', size: 'M', color: 'Champagne', stock: 2, available: true }
       ]
     },
     {
       id: '4',
+      reference: 'TH-LNG-004',
       name: 'Rose Ancien Set',
       category: 'lingerie',
       description: 'Ensemble délicat aux finitions soignées. Bientôt disponible.',
@@ -95,12 +125,18 @@ export class ProductService {
       careInstructions: [
         'Lavage délicat à 30°C',
         'Séchage à plat'
+      ],
+      variants: [
+        { sku: 'TH-LNG-004-S-RAN', size: 'S', color: 'Rose Ancien', stock: 0, available: false },
+        { sku: 'TH-LNG-004-M-RAN', size: 'M', color: 'Rose Ancien', stock: 0, available: false },
+        { sku: 'TH-LNG-004-S-BLK', size: 'S', color: 'Noir', stock: 0, available: false }
       ]
     },
 
-    // BRAS
+    // ================= BRAS =================
     {
       id: '5',
+      reference: 'TH-BRA-005',
       name: 'Lift Soft',
       category: 'bras',
       description: 'Soutien-gorge confortable avec un maintien naturel et une belle silhouette.',
@@ -117,10 +153,18 @@ export class ProductService {
         'Lavage à 30°C',
         'Séchage horizontal',
         'Ne pas tordre'
+      ],
+      variants: [
+        { sku: 'TH-BRA-005-80A-BLK', size: '80A', color: 'Noir', stock: 5, available: true },
+        { sku: 'TH-BRA-005-85B-BLK', size: '85B', color: 'Noir', stock: 7, available: true },
+        { sku: 'TH-BRA-005-90C-BLK', size: '90C', color: 'Noir', stock: 4, available: true },
+        { sku: 'TH-BRA-005-85B-BEG', size: '85B', color: 'Beige', stock: 6, available: true },
+        { sku: 'TH-BRA-005-90C-WHT', size: '90C', color: 'Blanc', stock: 3, available: true }
       ]
     },
     {
       id: '6',
+      reference: 'TH-BRA-006',
       name: 'Balcon Dentelle',
       category: 'bras',
       description: 'Balconnet dentelle élégant. Bientôt disponible.',
@@ -136,12 +180,17 @@ export class ProductService {
       careInstructions: [
         'Lavage délicat',
         'Séchage à plat'
+      ],
+      variants: [
+        { sku: 'TH-BRA-006-85B-BLK', size: '85B', color: 'Noir', stock: 0, available: false },
+        { sku: 'TH-BRA-006-90C-BEG', size: '90C', color: 'Beige', stock: 0, available: false }
       ]
     },
 
-    // SHAPEWEAR
+    // ================= SHAPEWEAR =================
     {
       id: '7',
+      reference: 'TH-SHP-007',
       name: 'Sculpt Invisible',
       category: 'shapewear',
       description: 'Gaine discrète pour lisser la silhouette sous les vêtements.',
@@ -158,10 +207,18 @@ export class ProductService {
         'Lavage à 30°C',
         'Pas de sèche-linge',
         'Séchage à l\'air libre'
+      ],
+      variants: [
+        { sku: 'TH-SHP-007-S-BLK', size: 'S', color: 'Noir', stock: 9, available: true },
+        { sku: 'TH-SHP-007-M-BLK', size: 'M', color: 'Noir', stock: 12, available: true },
+        { sku: 'TH-SHP-007-L-BLK', size: 'L', color: 'Noir', stock: 5, available: true },
+        { sku: 'TH-SHP-007-M-BEG', size: 'M', color: 'Beige', stock: 7, available: true },
+        { sku: 'TH-SHP-007-L-BEG', size: 'L', color: 'Beige', stock: 2, available: true }
       ]
     },
     {
       id: '8',
+      reference: 'TH-SHP-008',
       name: 'Sculpt Strong',
       category: 'shapewear',
       description: 'Compression plus ferme pour un maintien renforcé. Bientôt disponible.',
@@ -177,12 +234,17 @@ export class ProductService {
       careInstructions: [
         'Lavage délicat à 30°C',
         'Séchage à l\'air libre'
+      ],
+      variants: [
+        { sku: 'TH-SHP-008-M-BLK', size: 'M', color: 'Noir', stock: 0, available: false },
+        { sku: 'TH-SHP-008-L-BEG', size: 'L', color: 'Beige', stock: 0, available: false }
       ]
     },
 
-    // ACTIVEWEAR
+    // ================= ACTIVEWEAR =================
     {
       id: '9',
+      reference: 'TH-ACT-009',
       name: 'Move Soft Body',
       category: 'activewear',
       description: 'Body confortable pour le mouvement, élégant et pratique.',
@@ -199,6 +261,13 @@ export class ProductService {
         'Lavage à 30°C',
         'Laver à l\'envers',
         'Séchage horizontal'
+      ],
+      variants: [
+        { sku: 'TH-ACT-009-S-BLK', size: 'S', color: 'Noir', stock: 6, available: true },
+        { sku: 'TH-ACT-009-M-BLK', size: 'M', color: 'Noir', stock: 8, available: true },
+        { sku: 'TH-ACT-009-L-BLK', size: 'L', color: 'Noir', stock: 4, available: true },
+        { sku: 'TH-ACT-009-S-WHT', size: 'S', color: 'Blanc', stock: 3, available: true },
+        { sku: 'TH-ACT-009-M-WHT', size: 'M', color: 'Blanc', stock: 5, available: true }
       ]
     }
   ];
@@ -246,12 +315,18 @@ export class ProductService {
     this.productsSubject.next(this.products);
   }
 
+  // ===== MÉTHODES =====
+
   getProducts(): Observable<Product[]> {
     return this.products$;
   }
 
   getProductById(id: string): Product | undefined {
     return this.products.find(p => p.id === id);
+  }
+
+  getProductByReference(reference: string): Product | undefined {
+    return this.products.find(p => p.reference?.toLowerCase() === reference.toLowerCase());
   }
 
   getProductsByCategory(category: string): Product[] {
@@ -268,5 +343,43 @@ export class ProductService {
 
   getCategories(): Category[] {
     return this.categories;
+  }
+
+  searchProducts(query: string): Product[] {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+
+    return this.products.filter(p => {
+      const nameMatch = p.name.toLowerCase().includes(q);
+      const idMatch = p.id.toLowerCase().includes(q);
+      const refMatch = (p.reference || `TH-${p.id}`).toLowerCase().includes(q);
+      const categoryMatch = p.category.toLowerCase().includes(q);
+      return nameMatch || idMatch || refMatch || categoryMatch;
+    });
+  }
+
+  getVariant(product: Product, size: string, color: string): ProductVariant | undefined {
+    return product.variants?.find(v => v.size === size && v.color === color);
+  }
+
+  isVariantInStock(product: Product, size: string, color: string): boolean {
+    const variant = this.getVariant(product, size, color);
+    return !!variant && variant.stock > 0;
+  }
+
+  getAvailableSizes(product: Product, color?: string): string[] {
+    const variants = product.variants || [];
+    const filtered = color
+      ? variants.filter(v => v.color === color && v.stock > 0)
+      : variants.filter(v => v.stock > 0);
+    return [...new Set(filtered.map(v => v.size))];
+  }
+
+  getAvailableColors(product: Product, size?: string): string[] {
+    const variants = product.variants || [];
+    const filtered = size
+      ? variants.filter(v => v.size === size && v.stock > 0)
+      : variants.filter(v => v.stock > 0);
+    return [...new Set(filtered.map(v => v.color))];
   }
 }
