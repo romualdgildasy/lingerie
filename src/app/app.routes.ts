@@ -8,6 +8,9 @@ import { AboutComponent } from './components/about/about';
 import { CheckoutComponent } from './components/checkout/checkout';
 import { SizeGuideComponent } from './components/size-guide/size-guide';
 import { DeliveryComponent } from './components/delivery/delivery';
+import { PrivacyComponent } from './components/legal/privacy';
+import { TermsComponent } from './components/legal/terms';
+import { ReturnsComponent } from './components/legal/returns';
 
 export const routes = [
     {
@@ -90,7 +93,20 @@ export const routes = [
 { path: 'delivery', component: DeliveryComponent, data: {
   title: 'Livraison — TrulyHer',
   description: 'Zones, délais et frais de livraison au Cameroun.'
-}},
+}
+},
+{ path: 'privacy', component: PrivacyComponent, 
+  data: { title: 'Confidentialité — TrulyHer' 
+} 
+},
+{ path: 'terms', component: TermsComponent,
+   data: { title: 'CGV — TrulyHer' 
+}
+ },
+{ path: 'returns', component: ReturnsComponent, 
+  data: { title: 'Retours — TrulyHer' 
+} 
+},
     {
         path: '**',
         redirectTo: ''
