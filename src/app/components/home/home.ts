@@ -4,13 +4,14 @@ import { RouterLink } from '@angular/router';
 import { ProductService } from '../../services/product';
 import { Product } from '../../models/product';
 import { ReviewsComponent } from '../reviews/reviews';
+import { FormsModule } from '@angular/forms';
 
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink, ReviewsComponent],
+  imports: [CommonModule, FormsModule, RouterLink, ReviewsComponent],
   template: `
 
     <!-- ================= HERO ================= -->
@@ -47,7 +48,7 @@ import { ReviewsComponent } from '../reviews/reviews';
   </div>
 </section>
 
-    <!--CATEGORIES -->
+    
    
 <section class="bg-white border-t border-[#D7C1A8]/30">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
@@ -211,6 +212,40 @@ import { ReviewsComponent } from '../reviews/reviews';
       Voir sur Instagram
     </a>
   </div>
+
+  <!-- ================= NEWSLETTER ================= -->
+<section class="bg-[#111111] text-center py-14 md:py-16">
+  <div class="max-w-xl mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl text-white tracking-tight mb-3"
+        style="font-family: 'Cormorant Garamond', serif;">
+      Join the TrulyHer world
+    </h2>
+    <p class="text-sm text-gray-400 mb-8">
+      Découvrez nos nouveautés, collections et offres exclusives.
+    </p>
+
+    <form (submit)="subscribe($event)" class="flex flex-col sm:flex-row gap-3">
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        required
+        placeholder="Votre adresse e-mail"
+        class="flex-1 px-4 py-3 text-sm bg-white text-[#111111] placeholder-gray-400 focus:outline-none"
+      />
+      <button
+        type="submit"
+        class="px-8 py-3 bg-white text-[#111111] text-xs uppercase tracking-[0.2em] hover:bg-[#D7C1A8] transition"
+      >
+        S'inscrire
+      </button>
+    </form>
+
+    <p *ngIf="subscribed" class="text-xs text-[#D4AF7C] mt-4">
+      Merci, vous êtes bien inscrit(e).
+    </p>
+  </div>
+</section>
 </section>
   `,
   styles: [`:host { display: block; }`]
@@ -219,6 +254,16 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
 
   constructor(private productService: ProductService) {}
+  email = '';
+  subscribed = false;
+
+subscribe(event: Event) {
+  event.preventDefault();
+  if (!this.email) return;
+  // Plus tard → Firebase / API
+  this.subscribed = true;
+  this.email = '';
+} 
 
   ngOnInit() {
     this.productService.getProducts().subscribe(products => {
