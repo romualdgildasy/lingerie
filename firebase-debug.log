@@ -1,0 +1,155 @@
+[debug] [2026-09-29T09:12:44.251Z] ----------------------------------------------------------------------
+[debug] [2026-09-29T09:12:44.253Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\g.touko\PROJETS_PERSO\lingerie\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting
+[debug] [2026-09-29T09:12:44.253Z] CLI Version:   15.31.0
+[debug] [2026-09-29T09:12:44.253Z] Platform:      win32
+[debug] [2026-09-29T09:12:44.254Z] Node Version:  v24.21.0
+[debug] [2026-09-29T09:12:44.254Z] Detected Agent: unknown
+[debug] [2026-09-29T09:12:44.254Z] Time:          Tue Sep 29 2026 11:12:44 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2026-09-29T09:12:44.254Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-09-29T09:12:45.565Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-09-29T09:12:45.565Z] > authorizing via signed-in user (romualdgildas6@gmail.com)
+[debug] [2026-09-29T09:12:45.565Z] [iam] checking project trulyher-9322d for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-09-29T09:12:45.576Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:12:45.576Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:12:45.577Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions [none]
+[debug] [2026-09-29T09:12:45.577Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions  x-goog-user-project=trulyher-9322d
+[debug] [2026-09-29T09:12:45.577Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-09-29T09:12:46.323Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions 200
+[debug] [2026-09-29T09:12:46.324Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-09-29T09:12:46.325Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:12:46.325Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:12:46.325Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/trulyher-9322d [none]
+[debug] [2026-09-29T09:12:49.156Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/trulyher-9322d 200
+[debug] [2026-09-29T09:12:49.156Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/trulyher-9322d {"projectId":"trulyher-9322d","projectNumber":"441074156261","displayName":"trulyher","name":"projects/trulyher-9322d","resources":{"hostingSite":"trulyher-9322d"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_61127fc2-b6a9-4f56-925b-3d2682e63a5a"}
+[info] 
+[info] === Deploying to 'trulyher-9322d'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-09-29T09:12:49.162Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:12:49.163Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:12:49.163Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d [none]
+[debug] [2026-09-29T09:12:54.542Z] *** [apiv2] error from fetch(https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d, {"headers":{},"method":"GET"}): Error: read ECONNRESET
+[debug] [2026-09-29T09:12:54.543Z] *** [apiv2] retrying https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d without keep-alive after a premature close error
+[debug] [2026-09-29T09:12:55.549Z] *** [apiv2] Attempting the request again. Attempt number 2
+[debug] [2026-09-29T09:12:55.550Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d [none]
+[debug] [2026-09-29T09:12:55.697Z] *** [apiv2] error from fetch(https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d, {"headers":{},"method":"GET"}): Error: read ECONNRESET
+[debug] [2026-09-29T09:13:00.721Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\g.touko\PROJETS_PERSO\lingerie\node_modules\.pnpm\firebase-tools@15.31.0_@typ_6c5b7e42be30d8c9c1c2c8643d69c0f9\node_modules\firebase-tools\lib\utils.js:299:49)
+    at listOnTimeout (node:internal/timers:685:17)
+    at process.processTimers (node:internal/timers:618:7)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-09-29T09:13:26.567Z] ----------------------------------------------------------------------
+[debug] [2026-09-29T09:13:26.570Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\g.touko\PROJETS_PERSO\lingerie\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting --debug
+[debug] [2026-09-29T09:13:26.570Z] CLI Version:   15.31.0
+[debug] [2026-09-29T09:13:26.571Z] Platform:      win32
+[debug] [2026-09-29T09:13:26.571Z] Node Version:  v24.21.0
+[debug] [2026-09-29T09:13:26.571Z] Detected Agent: unknown
+[debug] [2026-09-29T09:13:26.571Z] Time:          Tue Sep 29 2026 11:13:26 GMT+0200 (heure d’été d’Europe centrale)
+[debug] [2026-09-29T09:13:26.571Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-09-29T09:13:27.898Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-09-29T09:13:27.898Z] > authorizing via signed-in user (romualdgildas6@gmail.com)
+[debug] [2026-09-29T09:13:27.899Z] [iam] checking project trulyher-9322d for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-09-29T09:13:27.910Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:27.910Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:27.911Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions [none]
+[debug] [2026-09-29T09:13:27.912Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions  x-goog-user-project=trulyher-9322d
+[debug] [2026-09-29T09:13:27.912Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-09-29T09:13:30.373Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions 200
+[debug] [2026-09-29T09:13:30.374Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/trulyher-9322d:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-09-29T09:13:30.375Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:30.375Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:30.376Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/trulyher-9322d [none]
+[debug] [2026-09-29T09:13:35.153Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/trulyher-9322d 200
+[debug] [2026-09-29T09:13:35.153Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/trulyher-9322d {"projectId":"trulyher-9322d","projectNumber":"441074156261","displayName":"trulyher","name":"projects/trulyher-9322d","resources":{"hostingSite":"trulyher-9322d"},"state":"ACTIVE","labels":{"firebase":"enabled"},"etag":"1_61127fc2-b6a9-4f56-925b-3d2682e63a5a"}
+[info] 
+[info] === Deploying to 'trulyher-9322d'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2026-09-29T09:13:35.156Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:35.156Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:35.156Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d [none]
+[debug] [2026-09-29T09:13:37.957Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d 200
+[debug] [2026-09-29T09:13:37.958Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/trulyher-9322d/sites/trulyher-9322d {"name":"projects/trulyher-9322d/sites/trulyher-9322d","defaultUrl":"https://trulyher-9322d.web.app","type":"DEFAULT_SITE"}
+[debug] [2026-09-29T09:13:37.965Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:37.965Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:37.968Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions [none]
+[debug] [2026-09-29T09:13:37.968Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-09-29T09:13:39.975Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions 200
+[debug] [2026-09-29T09:13:39.975Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions {"name":"projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[trulyher-9322d]: beginning deploy... 
+[info] i  hosting[trulyher-9322d]: found 18 files in dist/trulyher/browser 
+[debug] [2026-09-29T09:13:39.985Z] [hosting] uploading with 200 concurrency
+[debug] [2026-09-29T09:13:40.008Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:40.008Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:40.009Z] [hosting] hash cache [ZGlzdFx0cnVseWhlclxicm93c2Vy] stored for 18 files
+[debug] [2026-09-29T09:13:40.009Z] [hosting][hash queue][FINAL] {"max":18,"min":0,"avg":2.2222222222222223,"active":0,"complete":18,"success":18,"errored":0,"retried":0,"total":18,"elapsed":21}
+[debug] [2026-09-29T09:13:40.010Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b:populateFiles [none]
+[debug] [2026-09-29T09:13:40.010Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b:populateFiles {"files":{"/worker-basic.min.js":"d298b86f5ff5230bc748a704dd0e6b3e6997ac43d68906f18881e0b2ec8a143f","/safety-worker.js":"d298b86f5ff5230bc748a704dd0e6b3e6997ac43d68906f18881e0b2ec8a143f","/ngsw-worker.js":"2012bfa7db2ea752dcafe720c33aa930954130e2c1f6db154dd1cc568e244246","/manifest.webmanifest":"c8006ba0c292d3eb4a71c886fb064f2b3fd4d8fb23c141794b5c2cb5f271b152","/favicon.ico":"a905b13e228420df3dbe746dfb656d37a49736494c0737d00e007c8dc7319912","/icons/icon-96x96.png":"19b4bf06d401ae2c3a65e9327f99340b5970727448c6b26e7c4106d889fa16dc","/icons/icon-72x72.png":"804c4c143d779e5ae040ca3c68bf4d62224431b42d107ae203948087981a6d96","/icons/icon-512x512.png":"31c441c29e0dd384edf4a857dd571b3648400d31f3f548e7e80a458c63206017","/icons/icon-384x384.png":"d1305fa0a414596c0e6af4a18e82a8f449ea6acafbcb6ef407150970b3ded474","/icons/icon-192x192.png":"c3ac480b2b71b150b176ddaba8ad974339975ba636b91fedb26875a03bcf52de","/icons/icon-152x152.png":"95e1d6ba560002af2f07a9da277dca1730f61a153fdf21492d09258fbf3a6a6f","/icons/icon-144x144.png":"991e3e6c64bd6b2e3a6f462d837f1a3948ae3b74204b647a49e3e124873a4e5b","/icons/icon-128x128.png":"ff7cdca8923c3f2fbd289ebbe804e035cd16ddeae83c7d1f95dc330db0d1e1dd","/index.html":"55b9935493110ec31b4a817c599e3da30bba7fb73d2b83cde07d175632baaab9","/ngsw.json":"35e4fbe436230d006bf8edf353ee6123b8a05f749c8dd7ed867f50ba03869a62","/styles-SI4SQFFU.css":"fa42c2eb6dc0a449d2275b14081666d4b75eeebac95fe4b63e468349f56ebad8","/polyfills-7R4CRVNH.js":"01200fec31742276cd52f441fe1fc84938c53abceeedd3f35725033f5e782591","/main-53G4YK6S.js":"a04cf9ff07e05e9dc92064b277cf28c2575d7638be70a4666f74eca5466ab697"}}
+[debug] [2026-09-29T09:13:41.067Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b:populateFiles 200
+[debug] [2026-09-29T09:13:41.067Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b:populateFiles {"uploadRequiredHashes":["35e4fbe436230d006bf8edf353ee6123b8a05f749c8dd7ed867f50ba03869a62"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/trulyher-9322d/versions/41f41c01f484015b/files"}
+[debug] [2026-09-29T09:13:41.068Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:41.069Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:41.069Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/trulyher-9322d/versions/41f41c01f484015b/files/35e4fbe436230d006bf8edf353ee6123b8a05f749c8dd7ed867f50ba03869a62 [none]
+[debug] [2026-09-29T09:13:41.069Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/trulyher-9322d/versions/41f41c01f484015b/files/35e4fbe436230d006bf8edf353ee6123b8a05f749c8dd7ed867f50ba03869a62 [stream]
+[debug] [2026-09-29T09:13:41.072Z] [hosting][populate queue][FINAL] {"max":1062,"min":1062,"avg":1062,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1065}
+[debug] [2026-09-29T09:13:41.073Z] [hosting] uploads queued: 1
+[info] i  hosting: uploading new files [0/1] (0%) 
+[info] i  hosting: uploading new files [0/1] (0%) 
+[debug] [2026-09-29T09:13:44.016Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/trulyher-9322d/versions/41f41c01f484015b/files/35e4fbe436230d006bf8edf353ee6123b8a05f749c8dd7ed867f50ba03869a62 200
+[debug] [2026-09-29T09:13:44.016Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/trulyher-9322d/versions/41f41c01f484015b/files/35e4fbe436230d006bf8edf353ee6123b8a05f749c8dd7ed867f50ba03869a62 [stream]
+[debug] [2026-09-29T09:13:44.016Z] [hosting][upload queue][FINAL] {"max":2949,"min":2949,"avg":2949,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":2949}
+[info] i  hosting: upload complete 
+[info] +  hosting[trulyher-9322d]: file upload complete 
+[debug] [2026-09-29T09:13:44.016Z] [hosting] deploy completed after 4040ms
+[debug] [2026-09-29T09:13:44.017Z] [
+  {
+    "config": {
+      "public": "dist/trulyher/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "trulyher-9322d"
+    },
+    "version": "projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b"
+  }
+]
+[info] i  hosting[trulyher-9322d]: finalizing version... 
+[debug] [2026-09-29T09:13:44.018Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:44.018Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:44.018Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions/41f41c01f484015b updateMask=status%2Cconfig
+[debug] [2026-09-29T09:13:44.018Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions/41f41c01f484015b {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-09-29T09:13:45.778Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions/41f41c01f484015b 200
+[debug] [2026-09-29T09:13:45.779Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/versions/41f41c01f484015b {"name":"projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-09-29T09:16:15.551981Z","createUser":{"email":"romualdgildas6@gmail.com"},"finalizeTime":"2026-09-29T09:16:21.971419Z","finalizeUser":{"email":"romualdgildas6@gmail.com"}}
+[debug] [2026-09-29T09:13:45.779Z] [hosting] finalized version for trulyher-9322d:[object Object]
+[info] +  hosting[trulyher-9322d]: version finalized 
+[info] i  hosting[trulyher-9322d]: releasing new version... 
+[debug] [2026-09-29T09:13:45.780Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:45.780Z] Checked if tokens are valid: true, expires at: 1790675419437
+[debug] [2026-09-29T09:13:45.780Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/channels/live/releases versionName=projects%2F441074156261%2Fsites%2Ftrulyher-9322d%2Fversions%2F41f41c01f484015b
+[debug] [2026-09-29T09:13:45.780Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/channels/live/releases {}
+[debug] [2026-09-29T09:13:47.318Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/channels/live/releases 200
+[debug] [2026-09-29T09:13:47.319Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/trulyher-9322d/channels/live/releases {"name":"projects/441074156261/sites/trulyher-9322d/channels/live/releases/1790673382778000","version":{"name":"projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-09-29T09:16:15.551981Z","createUser":{"email":"romualdgildas6@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocI97q-tqVsnLpkOljWnwTroW7C64HYUu2YU1xMcXixTnBmRp64Q"},"finalizeTime":"2026-09-29T09:16:21.971419Z","finalizeUser":{"email":"romualdgildas6@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocI97q-tqVsnLpkOljWnwTroW7C64HYUu2YU1xMcXixTnBmRp64Q"}},"type":"DEPLOY","releaseTime":"2026-09-29T09:16:22.778Z","releaseUser":{"email":"romualdgildas6@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocI97q-tqVsnLpkOljWnwTroW7C64HYUu2YU1xMcXixTnBmRp64Q"}}
+[debug] [2026-09-29T09:13:47.319Z] [hosting] release: {"name":"projects/441074156261/sites/trulyher-9322d/channels/live/releases/1790673382778000","version":{"name":"projects/441074156261/sites/trulyher-9322d/versions/41f41c01f484015b","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-09-29T09:16:15.551981Z","createUser":{"email":"romualdgildas6@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocI97q-tqVsnLpkOljWnwTroW7C64HYUu2YU1xMcXixTnBmRp64Q"},"finalizeTime":"2026-09-29T09:16:21.971419Z","finalizeUser":{"email":"romualdgildas6@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocI97q-tqVsnLpkOljWnwTroW7C64HYUu2YU1xMcXixTnBmRp64Q"}},"type":"DEPLOY","releaseTime":"2026-09-29T09:16:22.778Z","releaseUser":{"email":"romualdgildas6@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/ACg8ocI97q-tqVsnLpkOljWnwTroW7C64HYUu2YU1xMcXixTnBmRp64Q"}}
+[info] +  hosting[trulyher-9322d]: release complete 
+[info] 
+[info] +  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/trulyher-9322d/overview
+[info] Hosting URL: https://trulyher-9322d.web.app
+[debug] [2026-09-29T09:13:53.149Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\g.touko\PROJETS_PERSO\lingerie\node_modules\.pnpm\firebase-tools@15.31.0_@typ_6c5b7e42be30d8c9c1c2c8643d69c0f9\node_modules\firebase-tools\lib\utils.js:299:49)
+    at listOnTimeout (node:internal/timers:685:17)
+    at process.processTimers (node:internal/timers:618:7)
+[error] 
+[error] Error: An unexpected error has occurred.
