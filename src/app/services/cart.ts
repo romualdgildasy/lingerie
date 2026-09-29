@@ -6,7 +6,7 @@ import { CartItem, Product } from '../models/product';
   providedIn: 'root'
 })
 export class CartService {
-  private readonly STORAGE_KEY = 'sensuelle_cart';
+  private readonly STORAGE_KEY = 'trulyher_cart';
   private cartSubject = new BehaviorSubject<CartItem[]>([]);
   public cart$ = this.cartSubject.asObservable();
 

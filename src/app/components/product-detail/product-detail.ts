@@ -68,7 +68,7 @@ import { Product } from '../../models/product';
               {{ product.name }}
             </h1>
             <p class="text-xs text-gray-400 tracking-wider mb-4">
-              Réf. TH-{{ product.id | uppercase }}
+             Réf. {{ product.reference || ('TH-' + product.id) }}
             </p>
 
             <!-- Prix -->
@@ -266,8 +266,8 @@ export class ProductDetailComponent implements OnInit {
       this.product = this.productService.getProductById(params['id']);
       if (this.product) {
         this.mainImage = this.product.image;
-        this.selectedSize = this.product.sizes[0] || '';
-        this.selectedColor = this.product.colors[0] || '';
+      this.selectedSize = this.product.sizes?.[0] || '';
+      this.selectedColor = this.product.colors?.[0] || '';
       }
       this.added = false;
       this.quantity = 1;
@@ -276,7 +276,12 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart() {
     if (!this.product || !this.product.available) return;
-    this.cartService.addToCart(this.product, this.selectedSize, this.selectedColor, this.quantity);
+    // Si ton CartService n'accepte pas quantity, enlève le 4e argument
+    try {
+      (this.cartService as any).addToCart(this.product, this.selectedSize, this.selectedColor, this.quantity);
+    } catch {
+      this.cartService.addToCart(this.product, this.selectedSize, this.selectedColor);
+    }
     this.added = true;
     setTimeout(() => this.added = false, 2500);
   }
