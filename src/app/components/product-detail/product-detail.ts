@@ -73,7 +73,7 @@ import { Product } from '../../models/product';
 
             <!-- Prix -->
             <p class="text-xl text-[#111111] mb-6">
-              {{ product.price | number:'1.2-2' }} €
+              {{ product.price | number:'1.2-2' }} cfa
             </p>
 
             <!-- Description courte -->

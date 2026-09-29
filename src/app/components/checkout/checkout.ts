@@ -132,7 +132,7 @@ import { CartItem } from '../../models/product';
                     {{ item.product.name }} × {{ item.quantity }}
                   </span>
                   <span class="text-[#111111]">
-                    {{ (item.product.price * item.quantity) | number:'1.2-2' }} €
+                    {{ (item.product.price * item.quantity) | number:'1.2-2' }} cfa
                   </span>
                 </div>
               </div>
@@ -140,17 +140,17 @@ import { CartItem } from '../../models/product';
               <div class="border-t border-[#D7C1A8]/30 pt-4 space-y-2 text-sm">
                 <div class="flex justify-between text-gray-600">
                   <span>Sous-total</span>
-                  <span>{{ subtotal | number:'1.2-2' }} €</span>
+                  <span>{{ subtotal | number:'1.2-2' }} cfa</span>
                 </div>
                 <div class="flex justify-between text-gray-600">
                   <span>Livraison</span>
-                  <span>{{ shipping > 0 ? (shipping | number:'1.2-2') + ' €' : '—' }}</span>
+                  <span>{{ shipping > 0 ? (shipping | number:'1.2-2') + ' cfa' : '—' }}</span>
                 </div>
               </div>
 
               <div class="border-t border-[#D7C1A8]/30 mt-4 pt-4 flex justify-between items-baseline">
                 <span class="font-medium text-[#111111]">Total</span>
-                <span class="text-xl text-[#111111]">{{ (subtotal + shipping) | number:'1.2-2' }} €</span>
+                <span class="text-xl text-[#111111]">{{ (subtotal + shipping) | number:'1.2-2' }} cfa</span>
               </div>
 
               <button (click)="confirmOrder()"

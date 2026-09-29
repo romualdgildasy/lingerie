@@ -76,7 +76,7 @@ import { CartItem } from '../../models/product';
                             class="w-8 h-8 flex items-center justify-center text-sm text-gray-600 hover:bg-[#F8F6F2]">+</button>
                   </div>
                   <p class="text-sm font-medium text-[#111111]">
-                    {{ (item.product.price * item.quantity) | number:'1.2-2' }} €
+                    {{ (item.product.price * item.quantity) | number:'1.2-2' }} cfa
                   </p>
                 </div>
               </div>
@@ -94,7 +94,7 @@ import { CartItem } from '../../models/product';
               <div class="space-y-3 text-sm">
                 <div class="flex justify-between text-gray-600">
                   <span>Sous-total</span>
-                  <span>{{ subtotal | number:'1.2-2' }} €</span>
+                  <span>{{ subtotal | number:'1.2-2' }} cfa</span>
                 </div>
                 <div class="flex justify-between text-gray-600">
                   <span>Livraison</span>
@@ -106,7 +106,7 @@ import { CartItem } from '../../models/product';
 
               <div class="flex justify-between items-baseline mb-6">
                 <span class="text-sm font-medium text-[#111111]">Total</span>
-                <span class="text-xl text-[#111111]">{{ subtotal | number:'1.2-2' }} €</span>
+                <span class="text-xl text-[#111111]">{{ subtotal | number:'1.2-2' }} cfa</span>
               </div>
 
               <button (click)="goToCheckout()"

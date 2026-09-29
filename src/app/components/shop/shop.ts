@@ -156,7 +156,7 @@ import { Product } from '../../models/product';
                     {{ product.name }}
                   </h3>
                   <p class="text-sm text-gray-500 mt-1">
-                    {{ product.price | number:'1.2-2' }} €
+                    {{ product.price | number:'1.2-2' }} cfa
                   </p>
                 </div>
               </a>
