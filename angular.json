@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lingerie": {
+    "trulyher": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -62,10 +62,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "lingerie:build:production"
+              "buildTarget": "trulyher:build:production"
             },
             "development": {
-              "buildTarget": "lingerie:build:development"
+              "buildTarget": "trulyher:build:development"
             }
           },
           "defaultConfiguration": "development"
