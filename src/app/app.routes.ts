@@ -1,7 +1,6 @@
 import { HomeComponent } from './components/home/home';
 import { ProductDetailComponent } from './components/product-detail/product-detail';
 import { CareGuideComponent } from './components/care-guide/care-guide';
-import { PricingComponent } from './components/pricing/pricing';
 import { CartComponent } from './components/cart/cart';
 import { ShopComponent } from './components/shop/shop';
 import { AboutComponent } from './components/about/about';
@@ -45,14 +44,7 @@ export const routes = [
             description: 'Apprenez comment entretenir correctement votre lingerie pour la préserver au maximum'
         }
     },
-    {
-        path: 'pricing',
-        component: PricingComponent,
-        data: { 
-            title: 'Grille Tarifaire - Sensuelle',
-            description: 'Consultez nos prix transparents et nos promotions'
-        }
-    },
+    
     {
   path: 'panier',
   component: CartComponent,
