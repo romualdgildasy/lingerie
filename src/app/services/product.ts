@@ -1,14 +1,8 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, from } from 'rxjs';
-import {
-  collection,
-  getDocs,
-  doc,
-  setDoc,
-  writeBatch
-} from 'firebase/firestore';
-import { db } from '../firebase.config';
-import { Product, Category, ProductVariant } from '../models/product';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {collection, doc, getDocs, writeBatch} from 'firebase/firestore';
+import {db} from '../firebase.config';
+import {Category, Product, ProductCategory, ProductVariant} from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +19,7 @@ export class ProductService {
       id: '1',
       reference: 'TH-STR-001',
       name: 'Bare Muse',
-      category: 'underwear',
+      category: ProductCategory.underwear,
       description: 'String seamless pensé pour un rendu discret sous les vêtements.',
       price: 15000,
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -48,7 +42,7 @@ export class ProductService {
       id: '2',
       reference: 'TH-CLP-002',
       name: 'Soft Day',
-      category: 'underwear',
+      category: ProductCategory.underwear,
       description: 'Culotte everyday douce et respirante.',
       price: 12000,
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -69,7 +63,7 @@ export class ProductService {
       id: '3',
       reference: 'TH-LNG-003',
       name: 'Noir Dentelle',
-      category: 'lingerie',
+      category: ProductCategory.lingerie,
       description: 'Pièce en dentelle raffinée.',
       price: 18000,
       sizes: ['XS', 'S', 'M', 'L'],
@@ -90,7 +84,7 @@ export class ProductService {
       id: '5',
       reference: 'TH-BRA-005',
       name: 'Lift Soft',
-      category: 'bras',
+      category: ProductCategory.bras,
       description: 'Soutien-gorge confortable avec maintien naturel.',
       price: 25000,
       sizes: ['80A', '85B', '90C', '95D'],
@@ -111,7 +105,7 @@ export class ProductService {
       id: '7',
       reference: 'TH-SHP-007',
       name: 'Sculpt Invisible',
-      category: 'shapewear',
+      category: ProductCategory.shapewear,
       description: 'Gaine discrète pour lisser la silhouette.',
       price: 22000,
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -132,7 +126,7 @@ export class ProductService {
       id: '9',
       reference: 'TH-ACT-009',
       name: 'Move Soft Body',
-      category: 'activewear',
+      category: ProductCategory.activewear,
       description: 'Body confortable pour le mouvement.',
       price: 28000,
       sizes: ['XS', 'S', 'M', 'L'],
@@ -152,12 +146,12 @@ export class ProductService {
   ];
 
   public categories: Category[] = [
-    { id: 'underwear', name: 'Underwear', description: 'Seamless • Lace • Everyday essentials' },
-    { id: 'bras', name: 'Bras', description: 'Confort • Maintien • Élégance' },
-    { id: 'shapewear', name: 'Shapewear', description: 'Silhouettes • Sculpt • Confidence' },
-    { id: 'lingerie', name: 'Lingerie', description: 'Séduction • Ensembles • Pièces spéciales' },
-    { id: 'activewear', name: 'Activewear', description: 'Confort • Performance • Mouvement' },
-    { id: 'men', name: 'Men', description: 'Collection homme — à développer' }
+    { id: ProductCategory.underwear, name: 'Underwear', description: 'Seamless • Lace • Everyday essentials' },
+    { id: ProductCategory.bras, name: 'Bras', description: 'Confort • Maintien • Élégance' },
+    { id: ProductCategory.shapewear, name: 'Shapewear', description: 'Silhouettes • Sculpt • Confidence' },
+    { id: ProductCategory.lingerie, name: 'Lingerie', description: 'Séduction • Ensembles • Pièces spéciales' },
+    { id: ProductCategory.activewear, name: 'Activewear', description: 'Confort • Performance • Mouvement' },
+    { id: ProductCategory.men, name: 'Men', description: 'Collection homme — à développer' }
   ];
 
   constructor() {
