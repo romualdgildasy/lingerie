@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WhatsappService } from '../../services/whatsapp';
+import { WhatsappService } from '../whatsapp';
 
 @Component({
   selector: 'app-whatsapp-button',

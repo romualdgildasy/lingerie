@@ -23,6 +23,7 @@ export class CartService {
     } catch {
       this.cartSubject.next([]);
     }
+
   }
 
   private saveCart(items: CartItem[]): void {

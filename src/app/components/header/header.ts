@@ -7,7 +7,7 @@ import { CartService } from '../../services/cart';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule],
   template: `
     <header class="sticky top-0 z-50 bg-[#F8F6F2]/95 backdrop-blur-md border-b border-[#D7C1A8]/30">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
