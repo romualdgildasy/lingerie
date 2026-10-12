@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {collection, doc, getDocs, writeBatch} from 'firebase/firestore';
+import {collection, doc, getDocs, writeBatch, updateDoc} from 'firebase/firestore';
 import {db} from '../firebase.config';
 import {Category, Product, ProductCategory, ProductVariant} from '../models/product';
+
 
 @Injectable({
   providedIn: 'root'
@@ -233,4 +234,42 @@ export class ProductService {
   async refresh(): Promise<void> {
     await this.loadProducts();
   }
+
+  /** Met à jour le stock d'une variante */
+async updateVariantStock(
+  productId: string,
+  sku: string,
+  newStock: number
+): Promise<void> {
+  const products = this.productsSubject.value;
+  const product = products.find(p => p.id === productId);
+  if (!product || !product.variants) return;
+
+  const variants = product.variants.map(v => {
+    if (v.sku === sku) {
+      return {
+        ...v,
+        stock: Math.max(0, newStock),
+        available: newStock > 0
+      };
+    }
+    return v;
+  });
+
+  const anyInStock = variants.some(v => v.stock > 0);
+  const updated: Product = {
+    ...product,
+    variants,
+    available: anyInStock
+  };
+
+  await updateDoc(doc(db, this.COLLECTION, productId), {
+    variants,
+    available: anyInStock
+  });
+
+  this.productsSubject.next(
+    products.map(p => (p.id === productId ? updated : p))
+  );
+}
 }
