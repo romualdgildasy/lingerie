@@ -13,6 +13,8 @@ import { ReturnsComponent } from './components/legal/returns';
 import { AdminLoginComponent } from './components/admin/admin-login';
 import { AdminDashboardComponent } from './components/admin/admin-dashboard';
 import { adminGuard } from './guards/admin.guard';
+import { AdminProductsComponent } from './components/admin/admin-products';
+import { AdminOrdersComponent } from './components/admin/admin-orders';
 
 export const routes = [
     {
@@ -112,6 +114,18 @@ export const routes = [
   component: AdminDashboardComponent,
   canActivate: [adminGuard],
   data: { title: 'Dashboard — TrulyHer' }
+},
+{
+  path: 'admin/products',
+  component: AdminProductsComponent,
+  canActivate: [adminGuard],
+  data: { title: 'Stock — TrulyHer Admin' }
+},
+{
+  path: 'admin/orders',
+  component: AdminOrdersComponent,
+  canActivate: [adminGuard],
+  data: { title: 'Commandes — TrulyHer Admin' }
 },
     {
         path: '**',

@@ -4,6 +4,7 @@ import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart';
 import { CartItem } from '../../models/product';
+import { OrderService } from '../../services/order';
 
 @Component({
   selector: 'app-checkout',
@@ -23,7 +24,8 @@ import { CartItem } from '../../models/product';
 
       <div class="max-w-6xl mx-auto px-4 py-8 md:py-10">
 
-        <div *ngIf="cartItems.length === 0" class="text-center py-16">
+        <!-- Panier vide (sauf si popup succès) -->
+        <div *ngIf="cartItems.length === 0 && !showSuccess" class="text-center py-16">
           <p class="text-gray-500 mb-6">Votre panier est vide.</p>
           <a routerLink="/shop" class="text-sm underline text-[#A78B8B]">Retour à la boutique</a>
         </div>
@@ -33,7 +35,6 @@ import { CartItem } from '../../models/product';
           <!-- Formulaire -->
           <div class="lg:col-span-3 space-y-8">
 
-            <!-- Coordonnées -->
             <section class="bg-white p-6 border border-[#D7C1A8]/20">
               <h2 class="text-lg text-[#111111] mb-5"
                   style="font-family: 'Cormorant Garamond', serif;">
@@ -87,7 +88,6 @@ import { CartItem } from '../../models/product';
               </div>
             </section>
 
-            <!-- Mode de paiement -->
             <section class="bg-white p-6 border border-[#D7C1A8]/20">
               <h2 class="text-lg text-[#111111] mb-5"
                   style="font-family: 'Cormorant Garamond', serif;">
@@ -132,7 +132,7 @@ import { CartItem } from '../../models/product';
                     {{ item.product.name }} × {{ item.quantity }}
                   </span>
                   <span class="text-[#111111]">
-                    {{ (item.product.price * item.quantity) | number:'1.2-2' }} cfa
+                    {{ (item.product.price * item.quantity) | number:'1.0-0' }} FCFA
                   </span>
                 </div>
               </div>
@@ -140,24 +140,24 @@ import { CartItem } from '../../models/product';
               <div class="border-t border-[#D7C1A8]/30 pt-4 space-y-2 text-sm">
                 <div class="flex justify-between text-gray-600">
                   <span>Sous-total</span>
-                  <span>{{ subtotal | number:'1.2-2' }} cfa</span>
+                  <span>{{ subtotal | number:'1.0-0' }} FCFA</span>
                 </div>
                 <div class="flex justify-between text-gray-600">
                   <span>Livraison</span>
-                  <span>{{ shipping > 0 ? (shipping | number:'1.2-2') + ' cfa' : '—' }}</span>
+                  <span>{{ shipping > 0 ? (shipping | number:'1.0-0') + ' FCFA' : '—' }}</span>
                 </div>
               </div>
 
               <div class="border-t border-[#D7C1A8]/30 mt-4 pt-4 flex justify-between items-baseline">
                 <span class="font-medium text-[#111111]">Total</span>
-                <span class="text-xl text-[#111111]">{{ (subtotal + shipping) | number:'1.2-2' }} cfa</span>
+                <span class="text-xl text-[#111111]">{{ (subtotal + shipping) | number:'1.0-0' }} FCFA</span>
               </div>
 
               <button (click)="confirmOrder()"
-                      [disabled]="!isFormValid()"
+                      [disabled]="!isFormValid() || submitting"
                       class="w-full h-12 mt-6 bg-[#111111] text-white text-xs uppercase tracking-[0.2em]
                              hover:bg-[#333] transition disabled:bg-gray-300 disabled:cursor-not-allowed">
-                Confirmer la commande
+                {{ submitting ? 'Envoi...' : 'Confirmer la commande' }}
               </button>
 
               <p class="text-[11px] text-gray-400 text-center mt-4 leading-relaxed">
@@ -165,9 +165,33 @@ import { CartItem } from '../../models/product';
               </p>
             </div>
           </div>
-
         </div>
       </div>
+
+      <!-- Popup succès -->
+      <div *ngIf="showSuccess"
+           class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/40">
+        <div class="bg-white w-full max-w-sm p-8 text-center shadow-lg">
+          <p class="text-2xl text-[#111111] mb-2"
+             style="font-family: 'Cormorant Garamond', serif;">
+            Merci
+          </p>
+          <p class="text-sm text-gray-600 mb-2">
+            Votre commande a bien été enregistrée.
+          </p>
+          <p class="text-xs text-gray-400 mb-6 font-mono" *ngIf="lastOrderId">
+            N° {{ lastOrderId }}
+          </p>
+          <p class="text-xs text-gray-500 mb-8 leading-relaxed">
+            Nous vous contactons bientôt pour confirmer la livraison.
+          </p>
+          <button (click)="closeSuccess()"
+                  class="w-full h-11 bg-[#111111] text-white text-xs uppercase tracking-[0.2em] hover:bg-[#333] transition">
+            Retour à l'accueil
+          </button>
+        </div>
+      </div>
+
     </div>
   `,
   styles: [`:host { display: block; }`]
@@ -176,6 +200,9 @@ export class CheckoutComponent implements OnInit {
   cartItems: CartItem[] = [];
   subtotal = 0;
   shipping = 0;
+  showSuccess = false;
+  lastOrderId = '';
+  submitting = false;
 
   form = {
     firstName: '',
@@ -190,6 +217,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
+    private orderService: OrderService,
     private router: Router
   ) {}
 
@@ -203,7 +231,7 @@ export class CheckoutComponent implements OnInit {
   calculateShipping() {
     switch (this.form.city) {
       case 'Douala':
-        this.shipping = 1000; // 1000 FCFA ≈ exemple
+        this.shipping = 1000;
         break;
       case 'Yaoundé':
         this.shipping = 2000;
@@ -230,13 +258,58 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  confirmOrder() {
-    if (!this.isFormValid()) return;
+  async confirmOrder() {
+    if (!this.isFormValid() || this.cartItems.length === 0 || this.submitting) return;
 
-    // Pour l’instant on simule la confirmation
-    // Plus tard on enverra vers Firebase / WhatsApp
-    alert('Commande confirmée ! Nous vous contacterons bientôt.');
-    this.cartService.clearCart();
+    this.submitting = true;
+
+    try {
+      const customerInfo: {
+        firstName: string;
+        lastName: string;
+        phone: string;
+        address: string;
+        city: string;
+        email?: string;
+        quartier?: string;
+      } = {
+        firstName: this.form.firstName.trim(),
+        lastName: this.form.lastName.trim(),
+        phone: this.form.phone.trim(),
+        address: this.form.address.trim(),
+        city: this.form.city
+      };
+
+      if (this.form.email?.trim()) {
+        customerInfo.email = this.form.email.trim();
+      }
+      if (this.form.quartier?.trim()) {
+        customerInfo.quartier = this.form.quartier.trim();
+      }
+
+      const orderId = await this.orderService.createOrder({
+        items: this.orderService.buildItemsFromCart(this.cartItems),
+        subtotal: this.subtotal,
+        shipping: this.shipping,
+        totalPrice: this.subtotal + this.shipping,
+        paymentMethod: this.form.payment as 'cod' | 'momo' | 'other',
+        customerInfo,
+        status: 'pending'
+      });
+
+      this.cartService.clearCart();
+      this.lastOrderId = orderId;
+      this.showSuccess = true;
+    } catch (e) {
+      console.error(e);
+      alert('Erreur lors de l\'enregistrement. Réessayez ou contactez-nous sur WhatsApp.');
+    } finally {
+      this.submitting = false;
+    }
+  }
+
+  closeSuccess() {
+    this.showSuccess = false;
     this.router.navigate(['/']);
   }
 }

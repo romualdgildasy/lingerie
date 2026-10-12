@@ -33,10 +33,11 @@ import { AuthService } from '../../services/auth';
             <p class="text-xs text-gray-500">Gérer les variantes et quantités</p>
           </a>
 
-          <div class="bg-white border border-[#D7C1A8]/20 p-6 opacity-50">
+          <a routerLink="/admin/orders"
+            class="block bg-white border border-[#D7C1A8]/30 p-6 hover:border-[#111111] transition">
             <p class="text-sm font-medium text-[#111111] mb-1">Commandes</p>
-            <p class="text-xs text-gray-500">Bientôt disponible</p>
-          </div>
+            <p class="text-xs text-gray-500">Voir les commandes reçues</p>
+          </a>
         </div>
       </div>
     </div>
