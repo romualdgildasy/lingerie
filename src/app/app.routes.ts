@@ -10,6 +10,9 @@ import { DeliveryComponent } from './components/delivery/delivery';
 import { PrivacyComponent } from './components/legal/privacy';
 import { TermsComponent } from './components/legal/terms';
 import { ReturnsComponent } from './components/legal/returns';
+import { AdminLoginComponent } from './components/admin/admin-login';
+import { AdminDashboardComponent } from './components/admin/admin-dashboard';
+import { adminGuard } from './guards/admin.guard';
 
 export const routes = [
     {
@@ -98,6 +101,17 @@ export const routes = [
 { path: 'returns', component: ReturnsComponent, 
   data: { title: 'Retours — TrulyHer' 
 } 
+},
+{
+  path: 'admin/login',
+  component: AdminLoginComponent,
+  data: { title: 'Admin — TrulyHer' }
+},
+{
+  path: 'admin',
+  component: AdminDashboardComponent,
+  canActivate: [adminGuard],
+  data: { title: 'Dashboard — TrulyHer' }
 },
     {
         path: '**',
