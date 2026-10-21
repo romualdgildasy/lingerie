@@ -15,6 +15,7 @@ import { AdminDashboardComponent } from './components/admin/admin-dashboard';
 import { adminGuard } from './guards/admin.guard';
 import { AdminProductsComponent } from './components/admin/admin-products';
 import { AdminOrdersComponent } from './components/admin/admin-orders';
+import { AdminProductFormComponent } from './components/admin/admin-product-form';
 
 export const routes = [
     {
@@ -126,6 +127,18 @@ export const routes = [
   component: AdminOrdersComponent,
   canActivate: [adminGuard],
   data: { title: 'Commandes — TrulyHer Admin' }
+},
+{
+  path: 'admin/products/new',
+  component: AdminProductFormComponent,
+  canActivate: [adminGuard],
+  data: { title: 'Nouveau produit — Admin' }
+},
+{
+  path: 'admin/products/edit/:id',
+  component: AdminProductFormComponent,
+  canActivate: [adminGuard],
+  data: { title: 'Modifier produit — Admin' }
 },
     {
         path: '**',
