@@ -1,9 +1,15 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {collection, doc, getDocs, writeBatch, updateDoc} from 'firebase/firestore';
-import {db} from '../firebase.config';
-import {Category, Product, ProductCategory, ProductVariant} from '../models/product';
-
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import {
+  collection,
+  getDocs,
+  doc,
+  setDoc,
+  updateDoc,
+  writeBatch
+} from 'firebase/firestore';
+import { db } from '../firebase.config';
+import { Product, Category, ProductVariant } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +20,12 @@ export class ProductService {
 
   private readonly COLLECTION = 'products';
 
-  /** Produits initiaux — injectés une seule fois si Firestore est vide */
   private seedProducts: Product[] = [
     {
       id: '1',
       reference: 'TH-STR-001',
       name: 'Bare Muse',
-      category: ProductCategory.underwear,
+      category: 'underwear',
       description: 'String seamless pensé pour un rendu discret sous les vêtements.',
       price: 15000,
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -35,15 +40,14 @@ export class ProductService {
       variants: [
         { sku: 'TH-STR-001-S-BLK', size: 'S', color: 'Noir', stock: 12, available: true },
         { sku: 'TH-STR-001-M-BLK', size: 'M', color: 'Noir', stock: 8, available: true },
-        { sku: 'TH-STR-001-L-BLK', size: 'L', color: 'Noir', stock: 4, available: true },
-        { sku: 'TH-STR-001-M-BEG', size: 'M', color: 'Beige', stock: 3, available: true }
+        { sku: 'TH-STR-001-L-BLK', size: 'L', color: 'Noir', stock: 4, available: true }
       ]
     },
     {
       id: '2',
       reference: 'TH-CLP-002',
       name: 'Soft Day',
-      category: ProductCategory.underwear,
+      category: 'underwear',
       description: 'Culotte everyday douce et respirante.',
       price: 12000,
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -64,7 +68,7 @@ export class ProductService {
       id: '3',
       reference: 'TH-LNG-003',
       name: 'Noir Dentelle',
-      category: ProductCategory.lingerie,
+      category: 'lingerie',
       description: 'Pièce en dentelle raffinée.',
       price: 18000,
       sizes: ['XS', 'S', 'M', 'L'],
@@ -85,7 +89,7 @@ export class ProductService {
       id: '5',
       reference: 'TH-BRA-005',
       name: 'Lift Soft',
-      category: ProductCategory.bras,
+      category: 'bras',
       description: 'Soutien-gorge confortable avec maintien naturel.',
       price: 25000,
       sizes: ['80A', '85B', '90C', '95D'],
@@ -106,7 +110,7 @@ export class ProductService {
       id: '7',
       reference: 'TH-SHP-007',
       name: 'Sculpt Invisible',
-      category: ProductCategory.shapewear,
+      category: 'shapewear',
       description: 'Gaine discrète pour lisser la silhouette.',
       price: 22000,
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
@@ -127,7 +131,7 @@ export class ProductService {
       id: '9',
       reference: 'TH-ACT-009',
       name: 'Move Soft Body',
-      category: ProductCategory.activewear,
+      category: 'activewear',
       description: 'Body confortable pour le mouvement.',
       price: 28000,
       sizes: ['XS', 'S', 'M', 'L'],
@@ -147,30 +151,26 @@ export class ProductService {
   ];
 
   public categories: Category[] = [
-    { id: ProductCategory.underwear, name: 'Underwear', description: 'Seamless • Lace • Everyday essentials' },
-    { id: ProductCategory.bras, name: 'Bras', description: 'Confort • Maintien • Élégance' },
-    { id: ProductCategory.shapewear, name: 'Shapewear', description: 'Silhouettes • Sculpt • Confidence' },
-    { id: ProductCategory.lingerie, name: 'Lingerie', description: 'Séduction • Ensembles • Pièces spéciales' },
-    { id: ProductCategory.activewear, name: 'Activewear', description: 'Confort • Performance • Mouvement' },
-    { id: ProductCategory.men, name: 'Men', description: 'Collection homme — à développer' }
+    { id: 'underwear', name: 'Underwear', description: 'Seamless • Lace • Everyday essentials' },
+    { id: 'bras', name: 'Bras', description: 'Confort • Maintien • Élégance' },
+    { id: 'shapewear', name: 'Shapewear', description: 'Silhouettes • Sculpt • Confidence' },
+    { id: 'lingerie', name: 'Lingerie', description: 'Séduction • Ensembles • Pièces spéciales' },
+    { id: 'activewear', name: 'Activewear', description: 'Confort • Performance • Mouvement' },
+    { id: 'men', name: 'Men', description: 'Collection homme — à développer' }
   ];
 
   constructor() {
     this.loadProducts();
   }
 
-  /** Charge depuis Firestore. Si vide → seed automatique */
   private async loadProducts(): Promise<void> {
     try {
       const snap = await getDocs(collection(db, this.COLLECTION));
-
       if (snap.empty) {
-        console.log('Firestore vide → seed des produits...');
         await this.seedToFirestore();
         this.productsSubject.next(this.seedProducts);
         return;
       }
-
       const products: Product[] = snap.docs.map(d => d.data() as Product);
       this.productsSubject.next(products);
     } catch (err) {
@@ -179,15 +179,12 @@ export class ProductService {
     }
   }
 
-  /** Écrit les produits seed dans Firestore (une fois) */
   private async seedToFirestore(): Promise<void> {
     const batch = writeBatch(db);
     for (const p of this.seedProducts) {
-      const ref = doc(db, this.COLLECTION, p.id);
-      batch.set(ref, p);
+      batch.set(doc(db, this.COLLECTION, p.id), p);
     }
     await batch.commit();
-    console.log('Seed terminé →', this.seedProducts.length, 'produits');
   }
 
   getProducts(): Observable<Product[]> {
@@ -230,46 +227,103 @@ export class ProductService {
     return !!v && v.stock > 0;
   }
 
-  /** Recharge depuis Firestore (après admin / maj stock) */
   async refresh(): Promise<void> {
     await this.loadProducts();
   }
 
-  /** Met à jour le stock d'une variante */
-async updateVariantStock(
-  productId: string,
-  sku: string,
-  newStock: number
-): Promise<void> {
-  const products = this.productsSubject.value;
-  const product = products.find(p => p.id === productId);
-  if (!product || !product.variants) return;
+  /** TH-AAAAMMJJ-NNNNNN — max 999999 / jour */
+  async generateReference(): Promise<string> {
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, '0');
+    const d = String(now.getDate()).padStart(2, '0');
+    const datePart = `${y}${m}${d}`;
+    const prefix = `TH-${datePart}-`;
 
-  const variants = product.variants.map(v => {
-    if (v.sku === sku) {
-      return {
-        ...v,
-        stock: Math.max(0, newStock),
-        available: newStock > 0
-      };
+    const snap = await getDocs(collection(db, this.COLLECTION));
+    let maxSeq = 0;
+    snap.docs.forEach(docSnap => {
+      const ref = (docSnap.data() as Product).reference || '';
+      if (ref.startsWith(prefix)) {
+        const seq = parseInt(ref.slice(prefix.length), 10);
+        if (!isNaN(seq) && seq > maxSeq) maxSeq = seq;
+      }
+    });
+
+    const next = maxSeq + 1;
+    if (next > 999999) {
+      throw new Error('Limite de références atteinte pour aujourd\'hui (999999).');
     }
-    return v;
-  });
+    return `${prefix}${String(next).padStart(6, '0')}`;
+  }
 
-  const anyInStock = variants.some(v => v.stock > 0);
-  const updated: Product = {
-    ...product,
-    variants,
-    available: anyInStock
-  };
+  async createProduct(data: Omit<Product, 'id' | 'reference'>): Promise<Product> {
+    const reference = await this.generateReference();
+    const id = reference;
+    const product: Product = {
+      ...data,
+      id,
+      reference,
+      price: Math.round(Number(data.price)),
+      available: data.available ?? true,
+      variants: data.variants || [],
+      sizes: data.sizes || [],
+      colors: data.colors || [],
+      gallery: data.gallery?.length ? data.gallery : data.image ? [data.image] : []
+    };
+    const clean = JSON.parse(JSON.stringify(product));
+    await setDoc(doc(db, this.COLLECTION, id), clean);
+    this.productsSubject.next([...this.productsSubject.value, product]);
+    return product;
+  }
 
-  await updateDoc(doc(db, this.COLLECTION, productId), {
-    variants,
-    available: anyInStock
-  });
+  async updateProduct(productId: string, patch: Partial<Product>): Promise<void> {
+    const { reference, id, ...safe } = patch as Product;
+    if (safe.price !== undefined) {
+      safe.price = Math.round(Number(safe.price));
+    }
+    const clean = JSON.parse(JSON.stringify(safe));
+    await updateDoc(doc(db, this.COLLECTION, productId), clean);
+    this.productsSubject.next(
+      this.productsSubject.value.map(p =>
+        p.id === productId
+          ? { ...p, ...safe, reference: p.reference, id: p.id }
+          : p
+      )
+    );
+  }
 
-  this.productsSubject.next(
-    products.map(p => (p.id === productId ? updated : p))
-  );
-}
+  async setProductAvailable(productId: string, available: boolean): Promise<void> {
+    await this.updateProduct(productId, { available });
+  }
+
+  async updateVariantStock(
+    productId: string,
+    sku: string,
+    newStock: number
+  ): Promise<void> {
+    const products = this.productsSubject.value;
+    const product = products.find(p => p.id === productId);
+    if (!product || !product.variants) return;
+
+    const variants = product.variants.map(v => {
+      if (v.sku === sku) {
+        const stock = Math.max(0, Math.round(newStock));
+        return { ...v, stock, available: stock > 0 };
+      }
+      return v;
+    });
+
+    const anyInStock = variants.some(v => v.stock > 0);
+    await updateDoc(doc(db, this.COLLECTION, productId), {
+      variants,
+      available: anyInStock
+    });
+
+    this.productsSubject.next(
+      products.map(p =>
+        p.id === productId ? { ...p, variants, available: anyInStock } : p
+      )
+    );
+  }
 }

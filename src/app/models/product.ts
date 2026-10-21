@@ -1,11 +1,10 @@
-export enum ProductCategory {
-  underwear = 'underwear',
-  lingerie = 'lingerie',
-  shapewear = 'shapewear',
-  bras = 'bras',
-  activewear = 'activewear',
-  men = 'men'
-}
+export type ProductCategory =
+  | 'underwear'
+  | 'lingerie'
+  | 'shapewear'
+  | 'bras'
+  | 'activewear'
+  | 'men';
 
 /**
  * Variante = taille + couleur + stock
