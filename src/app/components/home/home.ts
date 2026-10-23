@@ -34,7 +34,7 @@ import { FormsModule } from '@angular/forms';
 
       
       <div class="flex flex-wrap gap-4">
-        <a [routerLink]="['/shop']" [queryParams]="{category: 'underwear'}"
+        <a [routerLink]="['/shop']" [queryParams]="{category: ''}"
            class="inline-block bg-[#111111] text-white px-8 py-3.5 text-xs uppercase tracking-[0.2em] hover:bg-[#333] transition min-w-[160px] text-center">
           Shop Women
         </a>
