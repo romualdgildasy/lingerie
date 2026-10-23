@@ -50,31 +50,37 @@ import { FormsModule } from '@angular/forms';
 
     
    
+<!-- ================= NOS UNIVERS ================= -->
 <section class="bg-white border-t border-[#D7C1A8]/30">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
 
     <div class="text-center mb-12 md:mb-16">
+      <p class="text-xs uppercase tracking-[0.3em] text-[#A78B8B] mb-3">
+        Collection
+      </p>
       <h2 class="text-2xl md:text-3xl text-[#111111] tracking-tight"
           style="font-family: 'Cormorant Garamond', serif;">
         Nos univers
       </h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
 
       <!-- UNDERWEAR -->
       <a [routerLink]="['/shop']" [queryParams]="{category: 'underwear'}"
-         class="group relative aspect-[4/5] overflow-hidden bg-[#F8F6F2]">
-        <img src="https://placehold.co/600x750/D7C1A8/111111?text=Underwear"
+         class="group relative aspect-[3/4] overflow-hidden bg-[#F8F6F2]">
+        <img src="/assets/images/home/home-underwear.jpeg"
              alt="Underwear"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <h3 class="text-white text-xl md:text-2xl tracking-wide"
+             class="absolute inset-0 w-full h-full object-cover object-center
+                    transition duration-700 ease-out group-hover:scale-[1.03]"
+             onerror="this.src='https://placehold.co/600x800/F8F6F2/111111?text=Underwear'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
+          <h3 class="text-white text-xl tracking-wide"
               style="font-family: 'Cormorant Garamond', serif;">
             Underwear
           </h3>
-          <p class="text-white/80 text-xs md:text-sm mt-1 tracking-wide">
+          <p class="text-white/75 text-xs mt-1 tracking-wide">
             Seamless • Lace • Everyday essentials
           </p>
         </div>
@@ -82,17 +88,19 @@ import { FormsModule } from '@angular/forms';
 
       <!-- BRAS -->
       <a [routerLink]="['/shop']" [queryParams]="{category: 'bras'}"
-         class="group relative aspect-[4/5] overflow-hidden bg-[#F8F6F2]">
-        <img src="https://placehold.co/600x750/A78B8B/111111?text=Bras"
+         class="group relative aspect-[3/4] overflow-hidden bg-[#F8F6F2]">
+        <img src="/assets/images/home/home-bras.jpeg"
              alt="Bras"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <h3 class="text-white text-xl md:text-2xl tracking-wide"
+             class="absolute inset-0 w-full h-full object-cover object-center
+                    transition duration-700 ease-out group-hover:scale-[1.03]"
+             onerror="this.src='https://placehold.co/600x800/A78B8B/111111?text=Bras'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
+          <h3 class="text-white text-xl tracking-wide"
               style="font-family: 'Cormorant Garamond', serif;">
             Bras
           </h3>
-          <p class="text-white/80 text-xs md:text-sm mt-1 tracking-wide">
+          <p class="text-white/75 text-xs mt-1 tracking-wide">
             Confort • Maintien • Élégance
           </p>
         </div>
@@ -100,17 +108,19 @@ import { FormsModule } from '@angular/forms';
 
       <!-- SHAPEWEAR -->
       <a [routerLink]="['/shop']" [queryParams]="{category: 'shapewear'}"
-         class="group relative aspect-[4/5] overflow-hidden bg-[#F8F6F2]">
-        <img src="https://placehold.co/600x750/D4AF7C/111111?text=Shapewear"
+         class="group relative aspect-[3/4] overflow-hidden bg-[#F8F6F2]">
+        <img src="/assets/images/home/home-shapewear.jpeg"
              alt="Shapewear"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <h3 class="text-white text-xl md:text-2xl tracking-wide"
+             class="absolute inset-0 w-full h-full object-cover object-center
+                    transition duration-700 ease-out group-hover:scale-[1.03]"
+             onerror="this.src='https://placehold.co/600x800/D4AF7C/111111?text=Shapewear'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
+          <h3 class="text-white text-xl tracking-wide"
               style="font-family: 'Cormorant Garamond', serif;">
             Shapewear
           </h3>
-          <p class="text-white/80 text-xs md:text-sm mt-1 tracking-wide">
+          <p class="text-white/75 text-xs mt-1 tracking-wide">
             Silhouettes • Sculpt • Confidence
           </p>
         </div>
@@ -118,17 +128,19 @@ import { FormsModule } from '@angular/forms';
 
       <!-- LINGERIE -->
       <a [routerLink]="['/shop']" [queryParams]="{category: 'lingerie'}"
-         class="group relative aspect-[4/5] overflow-hidden bg-[#F8F6F2]">
-        <img src="https://placehold.co/600x750/D7C1A8/111111?text=Lingerie"
+         class="group relative aspect-[3/4] overflow-hidden bg-[#F8F6F2]">
+        <img src="/assets/images/home/home-lingerie.jpeg"
              alt="Lingerie"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <h3 class="text-white text-xl md:text-2xl tracking-wide"
+             class="absolute inset-0 w-full h-full object-cover object-center
+                    transition duration-700 ease-out group-hover:scale-[1.03]"
+             onerror="this.src='https://placehold.co/600x800/D7C1A8/111111?text=Lingerie'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
+          <h3 class="text-white text-xl tracking-wide"
               style="font-family: 'Cormorant Garamond', serif;">
             Lingerie
           </h3>
-          <p class="text-white/80 text-xs md:text-sm mt-1 tracking-wide">
+          <p class="text-white/75 text-xs mt-1 tracking-wide">
             Séduction • Ensembles • Pièces spéciales
           </p>
         </div>
@@ -136,17 +148,19 @@ import { FormsModule } from '@angular/forms';
 
       <!-- ACTIVEWEAR -->
       <a [routerLink]="['/shop']" [queryParams]="{category: 'activewear'}"
-         class="group relative aspect-[4/5] overflow-hidden bg-[#F8F6F2]">
-        <img src="https://placehold.co/600x750/A78B8B/111111?text=Activewear"
+         class="group relative aspect-[3/4] overflow-hidden bg-[#F8F6F2]">
+        <img src="/assets/images/home/home-activewear.jpeg"
              alt="Activewear"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-90">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <h3 class="text-white text-xl md:text-2xl tracking-wide"
+             class="absolute inset-0 w-full h-full object-cover object-center
+                    transition duration-700 ease-out group-hover:scale-[1.03]"
+             onerror="this.src='https://placehold.co/600x800/A78B8B/111111?text=Activewear'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
+          <h3 class="text-white text-xl tracking-wide"
               style="font-family: 'Cormorant Garamond', serif;">
             Activewear
           </h3>
-          <p class="text-white/80 text-xs md:text-sm mt-1 tracking-wide">
+          <p class="text-white/75 text-xs mt-1 tracking-wide">
             Confort • Performance • Mouvement
           </p>
         </div>
@@ -154,17 +168,19 @@ import { FormsModule } from '@angular/forms';
 
       <!-- MEN -->
       <a [routerLink]="['/shop']" [queryParams]="{category: 'men'}"
-         class="group relative aspect-[4/5] overflow-hidden bg-[#111111]">
-        <img src="https://placehold.co/600x750/111111/D7C1A8?text=Men"
+         class="group relative aspect-[3/4] overflow-hidden bg-[#111111]">
+        <img src="/assets/images/home/home-men.jpeg"
              alt="Men"
-             class="w-full h-full object-cover group-hover:scale-105 transition duration-700 opacity-80">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-          <h3 class="text-white text-xl md:text-2xl tracking-wide"
+             class="absolute inset-0 w-full h-full object-cover object-center
+                    transition duration-700 ease-out group-hover:scale-[1.03] opacity-90"
+             onerror="this.src='https://placehold.co/600x800/111111/D7C1A8?text=Men'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent"></div>
+        <div class="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
+          <h3 class="text-white text-xl tracking-wide"
               style="font-family: 'Cormorant Garamond', serif;">
             Men
           </h3>
-          <p class="text-white/70 text-xs md:text-sm mt-1 tracking-wide">
+          <p class="text-white/70 text-xs mt-1 tracking-wide">
             Collection homme — à développer
           </p>
         </div>
