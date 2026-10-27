@@ -14,32 +14,48 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule, RouterLink, ReviewsComponent],
   template: `
 
-    <!-- ================= HERO ================= -->
-<section class="relative bg-[#F8F6F2] overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="min-h-[70vh] md:min-h-[80vh] flex flex-col justify-center py-16 md:py-24">
-      
-      <p class="text-xs uppercase tracking-[0.35em] text-[#A78B8B] mb-6">
+ <!-- ================= HERO ================= -->
+<section class="relative h-[calc(100dvh-3.5rem)] min-h-[560px] max-h-[900px] overflow-hidden bg-[#1a1a1a]">
+
+  <!-- Image : s'adapte à l'écran, pas de scroll pour "finir" la photo -->
+  <div class="absolute inset-0">
+    <img src="/assets/images/home/hero.jpeg"
+         alt="TrulyHer"
+         class="w-full h-full object-cover
+                object-[center_15%]
+                md:object-[70%_center]
+                lg:object-[75%_center]"
+         onerror="this.src='https://placehold.co/1600x2000/1a1a1a/ffffff?text=TrulyHer'">
+    <!-- Voile léger à gauche seulement (lisibilité, pas une bordure) -->
+    <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent md:from-black/45 md:via-black/15 md:to-transparent"></div>
+  </div>
+
+  <!-- Texte -->
+  <div class="relative z-10 h-full max-w-7xl mx-auto px-6 sm:px-10 flex items-center">
+    <div class="max-w-[18rem] sm:max-w-sm md:max-w-md">
+
+      <p class="text-[10px] sm:text-xs uppercase tracking-[0.35em] text-white/75 mb-4 sm:mb-5">
         TrulyHer
       </p>
 
-      <h1 class="text-5xl md:text-7xl text-[#111111] leading-[1.1] mb-6 max-w-3xl"
+      <h1 class="text-[2.35rem] sm:text-5xl md:text-6xl text-white leading-[1.05] mb-4 sm:mb-5"
           style="font-family: 'Cormorant Garamond', serif;">
         Let us adorn<br>your intimacy
       </h1>
 
-      <p class="text-base md:text-lg text-gray-500 max-w-md mb-10 leading-relaxed">
+      <p class="text-sm text-white/70 mb-7 sm:mb-8 leading-relaxed max-w-xs">
         L'intimité mérite d'être habillée avec élégance.
       </p>
 
-      
-      <div class="flex flex-wrap gap-4">
-        <a [routerLink]="['/shop']" [queryParams]="{category: ''}"
-           class="inline-block bg-[#111111] text-white px-8 py-3.5 text-xs uppercase tracking-[0.2em] hover:bg-[#333] transition min-w-[160px] text-center">
+      <div class="flex flex-wrap gap-3">
+        <a [routerLink]="['/shop']" [queryParams]="{category: 'underwear'}"
+           class="inline-block bg-white text-[#111111] px-6 sm:px-7 py-3 text-[10px] sm:text-xs uppercase tracking-[0.2em]
+                  hover:bg-[#F8F6F2] transition">
           Shop Women
         </a>
         <a [routerLink]="['/shop']" [queryParams]="{category: 'men'}"
-           class="inline-block border border-[#111111] text-[#111111] px-8 py-3.5 text-xs uppercase tracking-[0.2em] hover:bg-[#111111] hover:text-white transition min-w-[160px] text-center">
+           class="inline-block border border-white/80 text-white px-6 sm:px-7 py-3 text-[10px] sm:text-xs uppercase tracking-[0.2em]
+                  hover:bg-white hover:text-[#111111] transition">
           Shop Men
         </a>
       </div>
